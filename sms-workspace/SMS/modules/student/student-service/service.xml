@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.4.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_4_0.dtd">
+
+<service-builder dependency-injector="ds"
+	package-path="com.armantec.sms.student">
+	<namespace>sms</namespace>
+	<!--<entity data-source="sampleDataSource" local-service="true" name="Foo" 
+		remote-service="false" session-factory="sampleSessionFactory" table="foo" 
+		tx-manager="sampleTransactionManager uuid="true""> -->
+
+	<!-- Define Student Entity -->
+
+	<entity local-service="true" name="Student"
+		remote-service="true" uuid="true">
+
+
+		<!-- PK fields -->
+
+		<column name="id" primary="true" type="long" />
+
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+		<column name="deleted" type="boolean" />
+		<!-- Other fields -->
+
+		<column name="name" type="String" />
+		<column name="email" type="String" />
+		<column name="address" type="String" />
+		<column name="semester" type="int" />
+		<column name="branchId" type="long" />
+		<column name="doj" type="Date"></column>
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="name" />
+		</order>
+
+		<!-- Finder methods -->
+		
+		
+		<finder name="Name" return-type="Collection">
+			<finder-column name="name" />
+			<finder-column name="deleted" />
+		</finder>
+
+		<!-- Find By BranchId -->
+		<finder name="BranchId" return-type="Collection">
+			<finder-column name="branchId" />
+			<finder-column name="deleted" />
+		</finder>
+
+
+<!-- Find By NameBramchSemester -->
+		<finder name="NameBranchSemester" return-type="Collection">
+			<finder-column name="name" />
+			<finder-column name="branchId" />
+			<finder-column name="semester" />
+			<finder-column name="deleted" />
+		</finder>
+
+<!-- Find By GroupId -->
+
+<finder name="GroupId" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="deleted" />
+		</finder>
+		<!-- References -->
+
+		<reference entity="AssetEntry"
+			package-path="com.liferay.portlet.asset" />
+		<reference entity="AssetTag"
+			package-path="com.liferay.portlet.asset" />
+	</entity>
+
+
+</service-builder>
+
+
+

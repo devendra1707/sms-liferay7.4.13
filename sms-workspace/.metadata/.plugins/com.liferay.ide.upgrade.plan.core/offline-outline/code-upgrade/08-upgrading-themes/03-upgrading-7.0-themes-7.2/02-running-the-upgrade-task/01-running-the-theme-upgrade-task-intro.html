@@ -1,0 +1,79 @@
+<h1 id="running-the-upgrade-task-for-70-themes"><a href="#running-the-upgrade-task-for-70-themes" id="running-the-upgrade-task-for-70-themes">Running the Upgrade Task for 7.0 Themes</a></h1>
+<p>You can upgrade a Liferay DXP 7.0 theme to the new DXP version, regardless of the
+development environment you use. This tutorial uses the Liferay JS Theme
+Toolkit&rsquo;s Gulp <code>upgrade</code> task to automate much of the steps. The Gulp <code>upgrade</code>
+task must be run twice to bring a Liferay DXP 7.0 theme up to the new DXP version.</p>
+<p>The Liferay Theme Generator is available in a few different versions. To update
+the Liferay DXP 7.0 theme to Liferay DXP 7.1, you must install v8.x.x of the
+<code>liferay-theme-tasks</code> dependency. After the theme is updated to 7.1, you must
+then install v9.x.x of the <code>liferay-theme-tasks</code> dependency to complete the
+upgrade process.</p>
+<p>Here&rsquo;s what the Upgrade Task does:</p>
+<ul>
+<li>Updates the theme&rsquo;s Liferay version</li>
+<li>Updates the theme&rsquo;s Bootstrap version</li>
+<li>Updates the theme&rsquo;s Lexicon version</li>
+<li>Suggests specific code updates</li>
+</ul>
+<p>Follow these steps to take the theme through the upgrade process:</p>
+<ol>
+<li>
+<p>Navigate to the theme&rsquo;s root directory and run the command below to update
+the theme&rsquo;s <code>liferay-theme-tasks</code> dependency to version <code>8.x.x</code>:</p>
+<pre><code class="language-bash">npm install --save-dev liferay-theme-tasks@8.x.x
+</code></pre>
+</li>
+<li>
+<p>Run the <code>gulp upgrade</code> command to upgrade the Liferay DXP 7.0 theme to 7.1.</p>
+<aside>
+<p><strong>Note</strong>: The Upgrade task overwrites the theme&rsquo;s files. We recommend that
+you backup your files before proceeding with the upgrade process.</p>
+</aside>
+<p>Here&rsquo;s what it does:</p>
+<ul>
+<li>Creates core code for generating theme base files</li>
+<li>Collects removed Bootstrap and Lexicon variables</li>
+<li>Updates Bootstrap version references</li>
+<li>Updates Lexicon version references</li>
+<li>Updates Liferay version references</li>
+</ul>
+</li>
+<li>
+<p>You must update the theme&rsquo;s <code>liferay-theme-tasks</code> dependency to version
+<code>9.x.x</code> to complete the upgrade process. Install the latest version of the
+Liferay Theme Generator as well while you&rsquo;re at it, so future uses of the
+tool will be compatible with the the new DXP version theme. Both commands are
+shown below. Run them separately:</p>
+<pre><code class="language-bash">npm install --save-dev liferay-theme-tasks@9.x.x
+
+npm install -g generator-liferay-theme@9.x.x
+</code></pre>
+</li>
+<li>
+<p>With the <code>9.x.x</code> versions of the <code>liferay-theme-tasks</code> and Liferay Theme
+Generator installed, run the <code>gulp upgrade</code> command for the final time to
+upgrade the 7.1 theme to 7.2:</p>
+<p>Here&rsquo;s what it does:</p>
+<ul>
+<li>Updates Liferay version references</li>
+<li>Updates theme dependencies</li>
+</ul>
+<aside>
+<p><strong>Note:</strong> Since Liferay DXP Fix Pack 2 and Liferay Portal 7.2 CE GA2, Font
+Awesome is available globally as a system setting, which is enabled by
+default. If you&rsquo;re using Font Awesome icons in your theme, answer yes (y)
+to the Font Awesome question during the Upgrade task to include Font
+Awesome imports in your theme. This ensures that your icons won&rsquo;t break if
+a Site Administrator disables the global setting.</p>
+</aside>
+</li>
+<li>
+<p>Run <code>gulp init</code> from your theme&rsquo;s root directory to update the path of your
+Liferay DXP server to point to your 7.2 Liferay DXP server.</p>
+</li>
+</ol>
+<p>The Gulp <code>upgrade</code> task lists any deprecated or removed variables. For other
+areas of the code it suspects might need updates, it logs suggestions. The task
+also reports changes that may affect theme templates. This jump-starts the
+upgrade process, but it doesn&rsquo;t complete it. Manual updates are required. The
+remaining portion of this tutorial covers these manual steps.</p>

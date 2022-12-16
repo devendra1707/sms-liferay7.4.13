@@ -1,0 +1,44 @@
+<h1 id="updating-the-responsiveness"><a href="#updating-the-responsiveness" id="updating-the-responsiveness">Updating the Responsiveness</a></h1>
+<div class="learn-path-step row">
+    <p id="stepTitle">Updating 6.2 CSS Code</p><p>Step 2 of 2</p>
+</div>
+<p>Bootstrap 4 explicit media queries replaced the Bootstrap 2 <code>respond-to</code> mixins
+for CSS responsiveness. Follow these steps to update the theme&rsquo;s responsiveness:</p>
+<ol>
+<li>
+<p>Open <code>_custom.scss</code>.</p>
+</li>
+<li>
+<p>Replace all <code>respond-to</code> mixins with corresponding media queries shown
+below. Note that some of the dimensions have slightly changed:</p>
+<p><strong>Media Query Replacements</strong></p>
+<table>
+<thead>
+<tr><th>Liferay Portal 6.2 Mixin</th><th align="left"> the new DXP version Media Query</th></tr>
+</thead>
+<tbody>
+<tr><td><code>@include respond-to(phone)</code> (max-width: 767px)</td><td align="left"><code>@include media-breakpoint-down(sm)</code> (max-width: 767px)</td></tr>
+<tr><td><code>@include respond-to(tablet)</code> (min-width: 768px, max-width: 979px)</td><td align="left"><code>@include media-breakpoint-only(md)</code> (min-width: 768px, max-width: 991px)</td></tr>
+<tr><td><code>@include respond-to(phone, tablet)</code> (max-width: 979px)</td><td align="left"><code>@include media-breakpoint-down(md)</code> (max-width: 991px)</td></tr>
+<tr><td><code>@include respond-to(desktop, tablet)</code> (min-width: 768px)</td><td align="left"><code>@include media-breakpoint-up(md)</code> (min-width: 768px)</td></tr>
+<tr><td><code>@include respond-to(desktop)</code> (min-width: 980px)</td><td align="left"><code>@include media-breakpoint-up(lg)</code> (min-width: 992px)</td></tr>
+</tbody>
+</table>
+<p>The Lunar Resort theme&rsquo;s original and updated syntax is shown below:</p>
+<p>Original:</p>
+<pre><code class="language-scss">@include respond-to(phone, tablet) {
+    html #wrapper #banner #navigation {
+    ...
+    }
+}
+</code></pre>
+<p>Updated:</p>
+<pre><code class="language-scss">@include media-breakpoint-down(md) {
+    html #wrapper #banner #navigation {
+    ...
+    }
+}
+</code></pre>
+</li>
+</ol>
+<p>The CSS code is updated! Next you&rsquo;ll update the theme&rsquo;s templates.</p>

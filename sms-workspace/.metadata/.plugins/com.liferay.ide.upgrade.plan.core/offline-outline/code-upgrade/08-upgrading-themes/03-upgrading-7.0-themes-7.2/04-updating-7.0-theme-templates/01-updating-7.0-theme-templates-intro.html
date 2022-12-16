@@ -1,0 +1,68 @@
+<h1 id="updating-70-theme-templates-to-72"><a href="#updating-70-theme-templates-to-72" id="updating-70-theme-templates-to-72">Updating 7.0 Theme Templates to 7.2</a></h1>
+<p>Liferay DXP 7.0 theme templates and the new DXP version theme templates are essentially
+the same. Here are the main changes:</p>
+<ul>
+<li>Velocity templates were deprecated in Liferay Portal CE 7.0 and are now
+removed in favor of FreeMarker templates in the new DXP version.</li>
+</ul>
+<p>Key reasons for using FreeMarker templates and removing Velocity templates
+are these:</p>
+<ul>
+<li>
+<p>FreeMarker is developed and maintained regularly, while Velocity is no longer
+actively being developed.</p>
+</li>
+<li>
+<p>FreeMarker is faster and supports more sophisticated macros.</p>
+</li>
+<li>
+<p>FreeMarker supports using taglibs directly rather than requiring a method
+to represent them. You can pass body content to them, parameters, etc.</p>
+</li>
+</ul>
+<p>If you haven&rsquo;t converted your Velocity theme templates to FreeMarker, <strong>you must
+convert your Velocity theme templates to FreeMarker now</strong>.</p>
+<p>The <code>gulp upgrade</code> command reports the required theme template changes in the
+log. For example, here is the <code>gulp upgrade</code> log for the Westeros Bank theme:</p>
+<pre><code class="language-bash">----------------------------------------------------------------
+ Liferay Upgrade (7.0 to 7.1)
+----------------------------------------------------------------
+
+Renamed aui.scss to clay.scss
+File: footer.ftl
+    Warning: .container-fluid-1280 has been deprecated. Please use 
+    .container-fluid.container-fluid-max-xl instead.
+File: portal_normal.ftl
+    Warning: .navbar-header has been removed. This container should be 
+    removed in most cases. Please, use your own container if necessary.
+</code></pre>
+<p>The log warns about removed and deprecated code and suggests replacements when
+applicable. For reference, the main changes between Liferay DXP 7.0 themes and
+the new DXP version themes appear below:</p>
+<ul>
+<li>
+<p>List items inside a container with the <code>list-inline</code> class
+<a href="https://getbootstrap.com/docs/4.3/migration/#typography">now require</a>
+the <code>list-inline-item</code> class.</p>
+</li>
+<li>
+<p>The <code>container-fluid-1280</code> class has been deprecated. Please use
+<code>container-fluid container-fluid-max-xl</code> instead.</p>
+</li>
+<li>
+<p>Responsive navbar behaviors
+<a href="https://getbootstrap.com/docs/4.3/migration/#navbar">are now applied</a>
+to the <code>navbar</code> class via the required <code>navbar-expand-{breakpoint}</code> class.</p>
+</li>
+<li>
+<p>The <code>navbar-toggle</code> class is now <code>navbar-toggler</code> and
+<a href="https://getbootstrap.com/docs/4.3/migration/#navbar">has different inner markup</a>.</p>
+</li>
+<li>
+<p>The <code>navbar-header</code> class has been removed. This container should be removed
+in most cases. Please, use your own container if necessary.</p>
+</li>
+</ul>
+<p>In this section you&rsquo;ll learn how to update various theme templates to
+the new DXP version.</p>
+<p><a class="go-link btn btn-primary" href="/docs/7-2/tutorials/-/knowledge_base/t/updating-7-0-theme-templates">Let&rsquo;s Go<span class="icon-circle-arrow-right"></span></a></p>

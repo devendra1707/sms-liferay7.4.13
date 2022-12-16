@@ -1,0 +1,10 @@
+Bundle-Name: common-util-api
+Bundle-SymbolicName: com.armantec.lms.common.util.services.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.armantec.lms.common.util.services.exception,\
+	com.armantec.lms.common.util.services.model,\
+	com.armantec.lms.common.util.services.service,\
+	com.armantec.lms.common.util.services.service.persistence
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../common-util-service/service.xml

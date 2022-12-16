@@ -1,0 +1,34 @@
+<h1 id="upgrading-a-liferay-mvc-portlet"><a href="#upgrading-a-liferay-mvc-portlet" id="upgrading-a-liferay-mvc-portlet">Upgrading a Liferay MVC Portlet</a></h1>
+<div class="learn-path-step row">
+    <p id="stepTitle">Upgrading Portlets</p><p>Step 2 of 6</p>
+</div>
+<p>Liferay&rsquo;s MVC Portlet framework is used extensively in Liferay DXP&rsquo;s portlets and
+is a popular choice for portlet developers. The
+<a href="https://docs.liferay.com/ce/portal/7.2-latest/javadocs/portal-kernel/com/liferay/portal/kernel/portlet/bridges/mvc/MVCPortlet.html"><code>MVCPortlet</code></a>
+class is a lightweight extension of <code>javax.portlet.GenericPortlet</code>. Its <code>init</code>
+method saves you from writing a lot of boilerplate code. MVC portlets can be
+upgraded to the new DXP version without a hitch.</p>
+<p>Upgrading a Liferay MVC Portlet involves these steps:</p>
+<ol>
+<li>
+<p>Adapt the portlet to the new DXP version&rsquo;s API using the Liferay Upgrade Planner.
+When running the planner&rsquo;s <em>Fix Upgrade Problems</em> step, many of the existing
+issues are autocorrected. For remaining issues, the planner identifies code
+affected by the new API and ways to adapt it.</p>
+</li>
+<li>
+<p><a href="../05-fixing-upgrade-problems/02-resolving-a-projects-dependencies.html">Resolve its dependencies</a></p>
+</li>
+<li>
+<p><a href="https://dev.liferay.com/docs/7-2/reference/-/knowledge_base/r/deploying-a-project">Deploy it</a></p>
+</li>
+</ol>
+<p>After deploying the upgraded portlet, the server prints messages that indicate
+the following portlet status:</p>
+<ul>
+<li>WAR processing</li>
+<li>WAB startup</li>
+<li>Availability to users</li>
+</ul>
+<p>You&rsquo;ve upgraded and deployed your Liferay MVC Portlet on your the new DXP version
+instance. Have fun showing off your upgraded portlet!</p>

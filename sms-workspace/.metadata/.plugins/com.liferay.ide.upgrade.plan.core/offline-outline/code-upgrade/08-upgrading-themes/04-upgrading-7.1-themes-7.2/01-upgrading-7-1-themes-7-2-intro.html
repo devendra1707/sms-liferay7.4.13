@@ -1,0 +1,47 @@
+<h1 id="upgrading-71-themes-to-72"><a href="#upgrading-71-themes-to-72" id="upgrading-71-themes-to-72">Upgrading 7.1 Themes to 7.2</a></h1>
+<p>You can upgrade a Liferay Portal 7.1 theme to the new DXP version, regardless of the
+development environment you use. This tutorial uses the Liferay JS Theme
+Toolkit&rsquo;s Gulp <code>upgrade</code> task to automate much of the steps. This requires
+v9.x.x of the Liferay Theme Generator and liferay theme tasks.</p>
+<p>Here&rsquo;s what the Upgrade Task does:</p>
+<ul>
+<li>Updates Liferay version references</li>
+<li>Updates theme dependencies</li>
+</ul>
+<p>Follow these steps to upgrade the theme:</p>
+<ol>
+<li>
+<p>Install the Liferay Theme Generator v9.x.x with the command below:</p>
+<pre><code class="language-bash">npm install -g generator-liferay-theme@9.x.x
+</code></pre>
+</li>
+<li>
+<p>You must update the theme&rsquo;s <code>liferay-theme-tasks</code> dependency to version
+<code>9.x.x</code> as well to run the upgrade process:</p>
+<pre><code class="language-bash">npm install --save-dev liferay-theme-tasks@9.x.x
+</code></pre>
+</li>
+<li>
+<p>With the <code>9.x.x</code> versions of the <code>liferay-theme-tasks</code> and Liferay Theme
+Generator installed, run the <code>gulp upgrade</code> command to upgrade the 7.1 theme
+to 7.2.</p>
+<aside>
+<p><strong>Note</strong>: The Upgrade task overwrites the theme&rsquo;s files. We recommend that
+you backup your files before proceeding with the upgrade process.</p>
+</aside>
+</li>
+<li>
+<p>In 7.1, Font Awesome &amp; Glyphicons were included in the <a href="../03-upgrading-7.0-themes-7.2/05-bootstrap-lexicon-compatibility-layer.html">compatibility layer</a>.
+Since Liferay DXP Fix Pack 2 and Liferay Portal 7.2 CE GA2, Font Awesome is
+available globally as a system setting, which is enabled by default. If
+you&rsquo;re using Font Awesome icons in your theme, answer yes (y) to the Font
+Awesome question during the Upgrade task to include the Font Awesome
+dependency  in your theme. This ensures that your icons won&rsquo;t break if a
+Site Administrator disables the global setting.</p>
+</li>
+<li>
+<p>Run <code>gulp init</code> from the theme&rsquo;s root directory to update the path of the
+app server to point to the new 7.2 app server.</p>
+</li>
+</ol>
+<p>There you have it! The theme is ready to run on the new DXP version.</p>

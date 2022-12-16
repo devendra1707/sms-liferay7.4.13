@@ -1,0 +1,78 @@
+<h1 id="updating-62-portal-normal-theme-template"><a href="#updating-62-portal-normal-theme-template" id="updating-62-portal-normal-theme-template">Updating 6.2 Portal Normal Theme Template</a></h1>
+<div class="learn-path-step row">
+    <p id="stepTitle">Updating 6.2 Theme Templates</p><p>Step 1 of 3</p>
+</div>
+<p>Follow these steps to update <code>portal_normal.ftl</code>:</p>
+<ol>
+<li>
+<p>Open <code>portal_normal.ftl</code> and replace the following 6.2 directives with the
+updated syntax. This change is described in the <a href="https://dev.liferay.com/docs/7-0/reference/-/knowledge_base/r/breaking-changes#taglibs-are-no-longer-accessible-via-the-theme-variable-in-freemarker">7.0 Breaking Changes</a>
+reference document:</p>
+<table>
+<thead>
+<tr><th>6.2</th><th align="left"> Updated</th></tr>
+</thead>
+<tbody>
+<tr><td><code>${theme.include(top_head_include)}</code></td><td align="left"><code>&lt;@liferay_util[&quot;include&quot;] page=top_head_include /&gt;</code></td></tr>
+<tr><td><code>${theme.include(body_top_include)}</code></td><td align="left"><code>&lt;@liferay_util[&quot;include&quot;] page=body_top_include /&gt;</code></td></tr>
+<tr><td><code>${theme.include(content_include)}</code></td><td align="left"><code>&lt;@liferay_util[&quot;include&quot;] page=content_include /&gt;</code></td></tr>
+<tr><td><code>${theme.wrapPortlet(&quot;portlet.ftl&quot;, content_include)}</code></td><td align="left"><code>&lt;@liferay_theme[&quot;wrap-portlet&quot;] page=&quot;portlet.ftl&quot;&gt; &lt;@liferay_util[&quot;include&quot;] page=content_include /&gt; &lt;/@&gt;</code></td></tr>
+<tr><td><code>${theme.include(body_bottom_include)}</code></td><td align="left"><code>&lt;@liferay_util[&quot;include&quot;] page=body_bottom_include /&gt;</code></td></tr>
+<tr><td><code>${theme.include(bottom_include)}</code></td><td align="left"><code>&lt;@liferay_util[&quot;include&quot;] page=bottom_include /&gt;</code></td></tr>
+<tr><td><code>${theme_settings[&quot;my-theme-setting&quot;]}</code></td><td align="left"><code>${themeDisplay.getThemeSetting(&quot;my-theme-setting&quot;)}</code></td></tr>
+<tr><td><code>${theme.runtime(&quot;56&quot;, &quot;articleId=&quot; + my_article_id)}</code></td><td align="left"><code>&lt;@liferay_portlet[&quot;runtime&quot;] portletName=</code><br/><code>&quot;com_liferay_journal_content_web_portlet_JournalContentPortlet&quot;</code> <br/><code>queryString=&quot;articleId=&quot; + my_article_id /&gt;</code></td></tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Remove the breadcrumbs and page title code:</p>
+<pre><code class="language-html">&lt;nav id=&quot;breadcrumbs&quot;&gt;		
+    &lt;@liferay.breadcrumbs /&gt;		
+&lt;/nav&gt;
+...
+&lt;h2 class=&quot;page-title&quot;&gt;
+    &lt;span&gt;${the_title}&lt;/span&gt;
+&lt;/h2&gt;
+</code></pre>
+</li>
+<li>
+<p>Remove <code>dockbar-split</code> from the <code>body</code> element&rsquo;s <code>class</code> value so it matches
+the markup below:</p>
+<pre><code class="language-html">&lt;body class=&quot;${css_class}&quot;&gt;
+</code></pre>
+</li>
+<li>
+<p>Find the
+<code>&lt;a href=&quot;#main-content&quot; id=&quot;skip-to-content&quot;&gt;&lt;@liferay.language key=&quot;skip-to-content&quot; /&gt;&lt;/a&gt;</code>
+element and replace it with the updated Liferay UI quick access macro shown
+below:</p>
+<pre><code class="language-markup">&lt;@liferay_ui[&quot;quick-access&quot;] contentId=&quot;#main-content&quot; /&gt;
+</code></pre>
+</li>
+<li>
+<p>Replace the <code>&lt;@liferay.dockbar /&gt;</code> macro with the updated Control menu
+macro:</p>
+<pre><code class="language-markup">&lt;@liferay.control_menu /&gt;
+</code></pre>
+</li>
+<li>
+<p>Replace the <code>|| is_signed_in</code> condition for the <code>navigation.ftl</code> theme template include with <code>&amp;&amp; is_setup_complete</code>:</p>
+<pre><code class="language-markup">&lt;#if has_navigation &amp;&amp; is_setup_complete&gt;
+	&lt;#include &quot;${full_templates_path}/navigation.ftl&quot; /&gt;
+&lt;/#if&gt;
+</code></pre>
+</li>
+<li>
+<p>Replace the <code>content</code> <code>&lt;div&gt;</code> with an HTML 5 <code>section</code> element. The <code>section</code>
+element is more accurate and provides better accessibility for screen
+readers:</p>
+<pre><code class="language-html">&lt;section id=&quot;content&quot;&gt;
+</code></pre>
+</li>
+<li>
+<p>Add the <code>&lt;h1 class=&quot;hide-accessible&quot;&gt;${the_title}&lt;/h1&gt;</code> header element just
+inside the <code>content</code> <code>&lt;section&gt;</code> to support accessibility, and remove the
+breadcrumbs <code>&lt;nav&gt;</code> element from inside it.</p>
+</li>
+</ol>
+<p><code>portal_normal.ftl</code> is updated! Next you can update the navigation template.</p>

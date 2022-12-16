@@ -1,0 +1,95 @@
+<h1 id="using-the-bootstrap-3-lexicon-css-compatibility-layer"><a href="#using-the-bootstrap-3-lexicon-css-compatibility-layer" id="using-the-bootstrap-3-lexicon-css-compatibility-layer">Using the Bootstrap 3 Lexicon CSS Compatibility Layer</a></h1>
+<p>By default, the new DXP version includes Bootstrap 4 out-of-the-box. Bootstrap 4 has
+been completely rewritten and therefore includes some
+<a href="https://getbootstrap.com/docs/4.3/migration/">notable changes</a>
+and
+<a href="https://getbootstrap.com/docs/4.3/getting-started/introduction/">compatibility updates</a>
+that may be cause for concern if your theme uses Bootstrap 3 or Lexicon CSS. Not
+to worry though. To ensure that your upgrade runs smoothly, Liferay DXP includes a
+compatibility layer so you can use Bootstrap 3 markup and Lexicon CSS markup
+alongside the new Bootstrap 4 and Clay CSS. If your theme extends the
+<a href="https://github.com/liferay/liferay-portal/tree/7.2.x/modules/apps/frontend-theme/frontend-theme-styled">Styled base theme</a>,
+this compatibility layer is included by default.</p>
+<aside>
+<p><strong>Note:</strong> The compatibility layer is meant as a short-term solution to ensure
+that your Bootstrap 3 and Lexicon CSS components aren&rsquo;t broken while you
+update your theme to use <a href="https://getbootstrap.com/docs/4.3/migration/">Bootstrap 4</a>
+and <a href="https://clayui.com/docs/css-framework/scss.html">Clay CSS</a>. It will be
+disabled in a future release. Migrate your theme to use Bootstrap 4 and Clay
+CSS as soon as you&rsquo;re able to.</p>
+</aside>
+<p>Follow these guidelines to update your markup:</p>
+<ol>
+<li>
+<p>Inspect your themes UI with the compatibility layer enabled
+(it&rsquo;s enabled by default), and note any issues.</p>
+</li>
+<li>
+<p>Individually disable the component(s) in the compatibility layer that you
+don&rsquo;t need. These are listed in the
+<a href="https://github.com/liferay/liferay-portal/blob/7.2.x/modules/apps/frontend-theme/frontend-theme-styled/src/main/resources/META-INF/resources/_styled/css/compat/_variables.scss"><code>css/compat/_variables.scss</code></a>
+file. For convenience, these components are listed below:</p>
+<pre><code class="language-scss">// Compatibility layer components config
+
+$compat-alerts: true !default;
+$compat-basic_search: true !default;
+$compat-breadcrumbs: true !default;
+$compat-button_groups: true !default;
+$compat-buttons: true !default;
+$compat-cards: true !default;
+$compat-component_animations: true !default;
+$compat-dropdowns: true !default;
+$compat-figures: true !default;
+$compat-form_validation: true !default;
+$compat-forms: true !default;
+$compat-grid: true !default;
+$compat-icons: true !default;
+$compat-labels: true !default;
+$compat-liferay: true !default;
+$compat-list_groups: true !default;
+$compat-management_bar: true !default;
+$compat-modals: true !default;
+$compat-nav_tabs: true !default;
+$compat-navbar: true !default;
+$compat-navs: true !default;
+$compat-pager: true !default;
+$compat-pagination: true !default;
+$compat-panels: true !default;
+$compat-progress_bars: true !default;
+$compat-responsive_utilities: true !default;
+$compat-sidebar: true !default;
+$compat-simple_flexbox_grid: true !default;
+$compat-stickers: true !default;
+$compat-tables: true !default;
+$compat-toggle_card: true !default;
+$compat-toggle_switch: true !default;
+$compat-toolbar: true !default;
+$compat-user_icons: true !default;
+$compat-utilities: true !default;
+</code></pre>
+<p>To disable a component, add the component you want to remove compatibility
+for to <code>/src/css/_clay_custom.scss</code> (create this file if it doesn&rsquo;t exist)
+and set its value to <code>false</code>. The example below removes compatibility for
+alerts and cards:</p>
+<pre><code class="language-scss">$compat-alerts: false !default;
+$compat-cards: false !default;
+</code></pre>
+<aside>
+<p><strong>Note:</strong> Some Liferay DXP components haven&rsquo;t been migrated to Bootstrap 4.
+Disabling certain components might cause portions of the UI to break.
+Therefore, after upgrading your markup, we recommend that you re-enable any
+components you disable. Proceed with caution.</p>
+</aside>
+</li>
+<li>
+<p>Update your markup to Bootstrap 4 and Clay CSS until you&rsquo;re satisfied with
+the result.</p>
+</li>
+<li>
+<p>Re-enable any components you disabled in the compatibility layer by
+removing any components you set to false in <code>/src/css/_clay_custom.scss</code>.
+This prevents Liferay DXP&rsquo;s UI from breaking.</p>
+</li>
+</ol>
+<p>Now you know how to use the Bootstrap 3 and Lexicon CSS compatibility layer to
+provide a smooth transition during your theme upgrade.</p>

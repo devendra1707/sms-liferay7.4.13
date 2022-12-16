@@ -1,0 +1,40 @@
+dependencies {
+	compileOnly group: "com.liferay.portal", name: "release.dxp.api"
+	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.lang"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.string"
+	compileOnly group: "com.liferay", name: "com.liferay.portal.aop.api"
+	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel"
+	compileOnly group: "org.osgi", name: "org.osgi.annotation.versioning"
+	compileOnly group: "org.osgi", name: "org.osgi.core"
+	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations"
+	compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bndlib", version:"6.2.0"
+	//compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bndlib"
+	compileOnly group: "com.liferay", name: "com.liferay.portal.spring.extender.api"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.content", version: "1.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.dynamic.data.mapping.api", version: "4.8.0"
+	
+	compileOnly group: "javax.servlet", name: "servlet-api", version: "2.5"
+    compileOnly group: "javax.portlet", name: "portlet-api", version: "3.0.0"
+	compileOnly group: "commons-lang", name: "commons-lang", version: "2.6"
+	
+	compile group: 'org.apache.poi', name: 'poi', version: '4.0.1'
+	compile group: 'org.apache.poi', name: 'poi-ooxml', version: '4.0.1'
+	compile group: 'org.apache.poi', name: 'poi-ooxml-schemas', version: '4.0.1'
+	compile group: 'xml-apis', name: 'xml-apis', version: '1.0.b2'
+	compile group: 'org.apache.xmlbeans', name: 'xmlbeans', version: '2.3.0'
+    compile group: 'commons-io', name: 'commons-io', version: '2.4'
+    
+	//compileOnly group: "commons-io", name: "commons-io", version: "2.6"
+	compileOnly group: "javax.mail", name: "mail", version: "1.4"
+	//compileOnly group: "org.apache.poi", name: "poi", version: "4.0.1"
+	//compile group: 'com.github.mlaccetti', name: 'javapns', version: '2.3.2'
+	//compile group: 'com.ganyo', name: 'gcm-server', version: '1.0.2'
+	//compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1'
+	
+	/*	compileOnly group: "com.liferay.portal", name: "com.liferay.util.taglib"
+	compileOnly group: "javax.servlet", name: "javax.servlet-api"
+	compileOnly group: "jstl", name: "jstl"*/
+	
+	
+}

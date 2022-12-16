@@ -1,0 +1,10 @@
+Bundle-Name: branch-api
+Bundle-SymbolicName: com.armantec.sms.branch.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.armantec.sms.branch.exception,\
+	com.armantec.sms.branch.model,\
+	com.armantec.sms.branch.service,\
+	com.armantec.sms.branch.service.persistence
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../branch-service/service.xml

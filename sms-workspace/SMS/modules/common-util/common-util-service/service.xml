@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.4.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_4_0.dtd">
+
+<service-builder dependency-injector="ds" package-path="com.armantec.lms.common.util.services">
+	<namespace>lms_common</namespace>
+	
+	<entity  name="Translation" local-service="true" remote-service="true" uuid="true">
+		<column name="id" primary="true" type="long" />
+		<column name="groupId" type="long" />
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+		<column name="modifiedBy" type="long" />
+		<column name="modifiedByName" type="String" />
+		<column name="deleted" type="boolean" />
+		<column name="languageCode" type="String" />
+		<column name="modelName" type="String" />
+		<column name="columnName" type="String" />
+		<column name="text" type="String" />
+		<column name="recordId" type="long" />
+		
+		<finder name="GroupModelNameColumnNameLangCode"	return-type="Translation">
+			<finder-column name="groupId"></finder-column>
+			<finder-column name="deleted"></finder-column>
+			<finder-column name="modelName"></finder-column>
+			<finder-column name="columnName"></finder-column>
+			<finder-column name="languageCode"></finder-column>
+		</finder>
+		<finder name="GroupModelNameColumnNameLangCodeRecordId"	return-type="Translation">
+			<finder-column name="groupId"></finder-column>
+			<finder-column name="deleted"></finder-column>
+			<finder-column name="modelName"></finder-column>
+			<finder-column name="columnName"></finder-column>
+			<finder-column name="languageCode"></finder-column>
+			<finder-column name="recordId"></finder-column>
+		</finder>
+		<finder name="AssessmentHistoryUseOnly"	return-type="Translation">
+			<finder-column name="groupId"></finder-column>
+			<finder-column name="modelName"></finder-column>
+			<finder-column name="columnName"></finder-column>
+			<finder-column name="languageCode"></finder-column>
+			<finder-column name="recordId"></finder-column>
+		</finder>
+
+		<finder name="GroupModelNameRecordId" return-type="Collection">
+			<finder-column name="groupId"></finder-column>
+			<finder-column name="deleted"></finder-column>
+			<finder-column name="modelName"></finder-column>
+			<finder-column name="recordId"></finder-column>
+		</finder>
+		
+			<reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />
+		<reference entity="AssetTag" package-path="com.liferay.portlet.asset" />
+		
+	</entity>
+	
+	
+	<entity name="CommonUtilService" local-service="true"	remote-service="false" />
+	<entity name="AnsibleAPIService" local-service="true"	remote-service="false" />		
+	<entity name="LabUtilService" local-service="true"	remote-service="false" />
+	<entity name="TimeUtilService" local-service="true"	remote-service="false" />		
+	<entity name="ZipUtilsService" local-service="true"	remote-service="false" />
+</service-builder>

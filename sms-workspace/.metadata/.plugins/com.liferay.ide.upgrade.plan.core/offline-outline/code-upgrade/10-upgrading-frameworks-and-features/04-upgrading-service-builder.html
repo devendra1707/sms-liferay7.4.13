@@ -1,0 +1,90 @@
+<h1 id="upgrading-service-builder"><a href="#upgrading-service-builder" id="upgrading-service-builder">Upgrading Service Builder</a></h1>
+<div class="learn-path-step row">
+    <p id="stepTitle">Upgrading Frameworks and Features</p><p>Step 3 of 4</p>
+</div>
+<p>the new DXP version continues to use
+<a href="https://dev.liferay.com/docs/7-2/appdev/-/knowledge_base/a/service-builder">Service Builder</a>, so
+you can focus on your application&rsquo;s business logic instead of its persistence
+details. It still generates model classes, local and remote services, and
+persistence.</p>
+<p>Upgrading most Service Builder portlets involves these steps:</p>
+<ol>
+<li><a href="#step-1-adapt-the-code-to-product-vers-api">Adapt the code to the new DXP version&rsquo;s API</a></li>
+<li><a href="#step-2-resolve-dependencies">Resolve dependencies</a></li>
+<li><a href="#step-3-build-the-services">Build the services</a></li>
+</ol>
+<p>Start by adapting the code.</p>
+<h2 id="step-1-adapt-the-code-to-the-new-dxp-versions-api"><a href="#step-1-adapt-the-code-to-the-new-dxp-versions-api" id="step-1-adapt-the-code-to-the-new-dxp-versions-api">Step 1: Adapt the Code to the new DXP version&rsquo;s API</a></h2>
+<p>Adapt the portlet to the new DXP version&rsquo;s API using the Upgrade Planner. When
+running the planner&rsquo;s <em>Fix Upgrade Problems</em> step, many of the existing issues
+are autocorrected. For remaining issues, the planner identifies code affected by
+the new API and ways to adapt it.</p>
+<p>For example, consider an example portlet with the following compilation error:</p>
+<pre><code class="language-bash">/html/guestbook/view.jsp(58,1) PWC6131: Attribute total invalid for tag search-container-results according to TLD
+</code></pre>
+<p>The <code>view.jsp</code> file specifies a tag library attribute <code>total</code> that doesn&rsquo;t exist
+in the new DXP version&rsquo;s <code>liferay-ui</code> tag library. Notice the second attribute
+<code>total</code>.</p>
+<pre><code class="language-markup">&lt;liferay-ui:search-container-results
+    results=&quot;&lt;%=EntryLocalServiceUtil.getEntries(scopeGroupId,
+                    guestbookId, searchContainer.getStart(),
+                    searchContainer.getEnd())%&gt;&quot;
+    total=&quot;&lt;%=EntryLocalServiceUtil.getEntriesCount(scopeGroupId,
+                    guestbookId)%&gt;&quot; /&gt;
+</code></pre>
+<p>Remove the <code>total</code> attribute assignment to make the tag like this:</p>
+<pre><code class="language-markup">&lt;liferay-ui:search-container-results
+    results=&quot;&lt;%=EntryLocalServiceUtil.getEntries(scopeGroupId,
+                    guestbookId, searchContainer.getStart(),
+                    searchContainer.getEnd())%&gt;&quot; /&gt;
+</code></pre>
+<p>Resolve these error types and others until your code is adapted to the new API.</p>
+<h2 id="step-2-resolve-dependencies"><a href="#step-2-resolve-dependencies" id="step-2-resolve-dependencies">Step 2: Resolve Dependencies</a></h2>
+<p>To adapt your app&rsquo;s dependencies, refer to the
+<a href="../05-fixing-upgrade-problems/02-resolving-a-projects-dependencies.html">Resolving a Project&rsquo;s Dependencies</a>
+tutorial. Once your dependencies are upgraded, rebuild your services!</p>
+<h2 id="step-3-build-the-services"><a href="#step-3-build-the-services" id="step-3-build-the-services">Step 3: Build the Services</a></h2>
+<!--Uncomment once article is available
+To rebuild your portlet's services, see the Running Service Builder article.
+-->
+<p>An example change where upgrading legacy Service Builder code can produce
+differing results is explained below.</p>
+<p>A Liferay Portal 6.2 portlet&rsquo;s <code>service.xml</code> file specifies exception class
+names in <code>exception</code> elements like this:</p>
+<pre><code class="language-xml">&lt;service-builder package-path=&quot;com.liferay.docs.guestbook&quot;&gt;
+    ...
+    &lt;exceptions&gt;
+        &lt;exception&gt;GuestbookName&lt;/exception&gt;
+        &lt;exception&gt;EntryName&lt;/exception&gt;
+        &lt;exception&gt;EntryMessage&lt;/exception&gt;
+        &lt;exception&gt;EntryEmail&lt;/exception&gt;
+    &lt;/exceptions&gt;
+&lt;/service-builder&gt;
+</code></pre>
+<p>In Liferay Portal 6.2, Service Builder generates exception classes to the path
+attribute <code>package-path</code> specifies. In the new DXP version, Service Builder generates
+them to <code>[package-path]/exception</code>.</p>
+<p>Old path:</p>
+<pre><code>[package-path]
+</code></pre>
+<p>New path:</p>
+<pre><code>[package-path]/exception 
+</code></pre>
+<p>For example, the example portlet&rsquo;s package path is
+<code>com.liferay.docs.guestbook</code>. Its exception class for <code>exception</code> element
+<code>GuestbookName</code> is generated to
+<code>docroot/WEB-INF/service/com/liferay/docs/guestbook/exception</code>. Classes that use
+the exception must import
+<code>com.liferay.docs.guestbook.exception.GuestbookNameException</code>. If this upgrade
+is required in your Service Builder project, you must update the references to
+your portlet&rsquo;s exception classes.</p>
+<p>Once your Service Builder portlet is upgraded,
+<a href="https://dev.liferay.com/docs/7-2/reference/-/knowledge_base/r/deploying-a-project">deploy it</a>.</p>
+<aside>
+<p><strong>Note:</strong> Service Builder portlets automatically migrated to Liferay Workspace
+using the Upgrade Planner or Blade CLI&rsquo;s <code>convert</code> command automatically
+has its Service Builder logic converted to API and implementation modules.
+This is a best practice for the new DXP version.</p>
+</aside>
+<p>The portlet is now available on Liferay DXP. Congratulations on upgrading a
+portlet that uses Service Builder!</p>

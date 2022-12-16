@@ -1,0 +1,39 @@
+<h1 id="resolving-breaking-changes"><a href="#resolving-breaking-changes" id="resolving-breaking-changes">Resolving Breaking Changes</a></h1>
+<div class="learn-path-step row">
+    <p id="stepTitle">Fixing Upgrade Problems</p><p>Step 2 of 2</p>
+</div>
+<p>Liferay goes to great lengths to maintain backwards compatibility. Sometimes,
+breaking changes are necessary to improve Liferay DXP. There may be cases where
+breaking changes affect your code upgrade process and must be resolved. A
+breaking change can include</p>
+<ul>
+<li>Functionality that is removed or replaced</li>
+<li>API incompatibilities: Changes to public Java or JavaScript APIs</li>
+<li>Changes to context variables available to templates</li>
+<li>Changes in CSS classes available to Liferay themes and portlets</li>
+<li>Configuration changes: Changes in configuration files, like
+<code>portal.properties</code>, <code>system.properties</code>, etc.</li>
+<li>Execution requirements: Java version, J2EE Version, browser versions, etc.</li>
+<li>Deprecations or end of support: For example, warning that a certain
+feature or API will be dropped in an upcoming version.</li>
+<li>Recommendations: For example, recommending using a newly introduced API that
+replaces an old API, in spite of the old API being kept in Liferay Portal for
+backwards compatibility.</li>
+</ul>
+<p>Liferay provides a list of breaking changes for every major release to ensure
+you can easily adapt your code during the upgrade process.</p>
+<ul>
+<li><a href="https://dev.liferay.com/docs/7-0/reference/-/knowledge_base/r/breaking-changes">Liferay DXP 7.0 Breaking Changes</a></li>
+<li><a href="https://dev.liferay.com/docs/7-1/reference/-/knowledge_base/r/breaking-changes">Liferay DXP 7.1 Breaking Changes</a></li>
+<li><a href="https://dev.liferay.com/docs/7-2/reference/-/knowledge_base/r/breaking-changes">the new DXP version Breaking Changes</a></li>
+</ul>
+<p>The easiest way to resolve breaking changes is by using the
+<a href="https://dev.liferay.com/docs/7-2/reference/-/knowledge_base/r/liferay-upgrade-planner">Liferay Upgrade Planner</a>.
+It automatically finds all documented breaking changes and can automatically
+resolve some of them on its own.</p>
+<p>If you&rsquo;re resolving breaking changes manually, make sure to investigate each
+breaking change document if you&rsquo;re upgrading code across multiple versions. For
+example, if you&rsquo;re upgrading from Liferay Portal 6.2 to the new DXP version, you must
+resolve all the breaking changes listed in the three documents listed above.</p>
+<p>Now that you&rsquo;ve resolved your breaking changes, you&rsquo;ll learn how to upgrade
+service builder services next.</p>

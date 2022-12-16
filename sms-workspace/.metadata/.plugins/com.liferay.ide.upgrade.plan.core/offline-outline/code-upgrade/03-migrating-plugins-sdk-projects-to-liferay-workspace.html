@@ -1,0 +1,49 @@
+<h1 id="migrating-plugins-sdk-projects-to-liferay-workspace"><a href="#migrating-plugins-sdk-projects-to-liferay-workspace" id="migrating-plugins-sdk-projects-to-liferay-workspace">Migrating Plugins SDK Projects to Liferay Workspace</a></h1>
+<p>The Plugins SDK was deprecated for Liferay DXP 7.0 and removed for Liferay DXP 7.1.
+Therefore, to upgrade your custom apps to the new DXP version, you must migrate them
+to a new environment.
+<a href="https://dev.liferay.com/docs/7-2/reference/-/knowledge_base/r/liferay-workspace">Liferay Workspace</a> is
+the recommended environment for your code migration and will be the assumed
+choice in this section.</p>
+<p>There are two steps you must follow to migrate your custom code to workspace:</p>
+<ol>
+<li>
+<p>Import the Plugins SDK project into the Upgrade Planner.</p>
+</li>
+<li>
+<p>Convert the Plugins SDK project to a supported workspace build type.</p>
+</li>
+</ol>
+<p>You&rsquo;ll step through importing a Plugins SDK project first.</p>
+<h2 id="importing-existing-plugins-sdk-projects"><a href="#importing-existing-plugins-sdk-projects" id="importing-existing-plugins-sdk-projects">Importing Existing Plugins SDK Projects</a></h2>
+<p>Initiating this step in the Upgrade Planner imports your Plugins SDK
+projects into the Upgrade Planner. These projects originate from the
+Plugins SDK you set when the Upgrade Planner process was started.</p>
+<p>If you&rsquo;re manually upgrading your code, you can skip this step.</p>
+<p>You&rsquo;re now ready to migrate your Plugins SDK projects to your new workspace!</p>
+<h2 id="migrating-existing-plugins-to-workspace"><a href="#migrating-existing-plugins-to-workspace" id="migrating-existing-plugins-to-workspace">Migrating Existing Plugins to Workspace</a></h2>
+<p>Liferay Workspace can be generated as a Gradle or Maven environment, but it does
+not support the Plugins SDK&rsquo;s Ant build. Because of this, you must convert your
+projects to one of the supported build tools:</p>
+<ul>
+<li>Gradle</li>
+<li>Maven</li>
+</ul>
+<p>When initiating this step for a Gradle-based workspace, your Ant-based Plugins
+SDK project is copied to the applicable workspace folder based on its project
+type (e.g., <code>wars</code>) and is converted to a Gradle project. There is also a Blade
+CLI command that completes this via the command line. Visit the
+<a href="https://dev.liferay.com/docs/7-2/reference/-/knowledge_base/r/converting-plugins-sdk-projects-with-blade-cli">Converting Plugins SDK Projects with Blade CLI</a>
+article for more information.</p>
+<p>If you&rsquo;re migrating your Ant project to a Maven workspace, you must manually
+copy the project to the applicable folder based on the project type (e.g.,
+<code>wars</code>). The majority of Plugins SDK projects belong in the workspace&rsquo;s <code>wars</code>
+folder. You can consult the
+<a href="https://dev.liferay.com/docs/7-2/reference/-/knowledge_base/r/liferay-workspace#workspace-anatomy">Workspace Anatomy</a>
+section for a full overview of a workspace&rsquo;s folder structure and choose where
+your custom app should reside. Once you&rsquo;ve made the decision, copy your custom
+app to the applicable workspace folder.</p>
+<p>Then you must convert your project from Ant to Maven. You&rsquo;ll have to
+complete this conversion manually.</p>
+<p>Once you&rsquo;re finished, you should have your project(s) residing in the applicable
+workspace folders as Gradle/Maven projects.</p>

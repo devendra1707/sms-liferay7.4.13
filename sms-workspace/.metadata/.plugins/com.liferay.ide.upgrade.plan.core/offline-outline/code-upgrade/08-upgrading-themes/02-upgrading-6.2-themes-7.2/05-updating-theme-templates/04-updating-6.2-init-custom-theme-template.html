@@ -1,0 +1,45 @@
+<h1 id="updating-62-init-custom-theme-template"><a href="#updating-62-init-custom-theme-template" id="updating-62-init-custom-theme-template">Updating 6.2 Init Custom Theme Template</a></h1>
+<div class="learn-path-step row">
+    <p id="stepTitle">Updating 6.2 Theme Templates</p><p>Step 3 of 3</p>
+</div>
+<p>The Lunar Resort theme has a couple theme settings defined in <code>init_custom.ftl</code>.
+The syntax has changed slightly in the new DXP version. Follow these steps to update
+the theme setting syntax:</p>
+<ol>
+<li>
+<p>Replace the <code>getterUtil.getBoolean(theme_settings</code> method with
+<code>getterUtil.getBoolean(themeDisplay.getThemeSetting</code>:</p>
+<p>Original:</p>
+<pre><code class="language-markup">&lt;#assign show_breadcrumbs = 
+getterUtil.getBoolean(theme_settings[&quot;show-breadcrumbs&quot;])/&gt;
+
+&lt;#assign show_page_title = 
+getterUtil.getBoolean(theme_settings[&quot;show-page-title&quot;])/&gt;
+</code></pre>
+<p>Updated:</p>
+<pre><code class="language-markup">&lt;#assign show_breadcrumbs = 
+getterUtil.getBoolean(themeDisplay.getThemeSetting(&quot;show-breadcrumbs&quot;))/&gt;
+
+&lt;#assign show_page_title = 
+getterUtil.getBoolean(themeDisplay.getThemeSetting(&quot;show-page-title&quot;))/&gt;
+</code></pre>
+</li>
+<li>
+<p>Although the Lunar Resort theme doesn&rsquo;t have any String variables, you would
+replace the <code>getterUtil.getString(theme_settings</code> method with
+<code>themeDisplay.getThemeSetting</code>:</p>
+<p>Original:</p>
+<pre><code class="language-markup">&lt;#assign string_setting = 
+getterUtil.getString(theme_settings[&quot;my-string-key&quot;])/&gt;
+</code></pre>
+<p>Updated:</p>
+<pre><code class="language-markup">&lt;#assign string_setting = 
+themeDisplay.getThemeSetting(&quot;my-string-key&quot;)/&gt;
+</code></pre>
+</li>
+</ol>
+<p>Awesome! The theme templates are updated. You can always compare theme templates
+with the updated ones found in the
+<a href="https://github.com/liferay/liferay-portal/tree/7.2.x/modules/apps/frontend-theme/frontend-theme-unstyled/src/main/resources/META-INF/resources/_unstyled/templates"><code>_unstyled</code> theme</a>,
+if you&rsquo;re unsure if  something has changed. Refer to the suggested changes that
+the Gulp <code>upgrade</code>  task reports for the theme.</p>

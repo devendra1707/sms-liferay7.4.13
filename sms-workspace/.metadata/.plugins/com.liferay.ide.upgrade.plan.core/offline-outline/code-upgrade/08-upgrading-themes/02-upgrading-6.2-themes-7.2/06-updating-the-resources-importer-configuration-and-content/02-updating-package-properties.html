@@ -1,0 +1,25 @@
+<h1 id="updating-62-liferay-plugin-package-properties"><a href="#updating-62-liferay-plugin-package-properties" id="updating-62-liferay-plugin-package-properties">Updating 6.2 Liferay Plugin Package Properties</a></h1>
+<div class="learn-path-step row">
+    <p id="stepTitle">Updating 6.2 Resources Importer</p><p>Step 1 of 3</p>
+</div>
+<p>Since the Lunar Resort theme was developed in the Plugins SDK, it requires
+the updates covered in this section. Themes developed outside of the Plugins SDK
+do not require these changes.</p>
+<p>Follow these steps to update the Lunar Resort Theme&rsquo;s
+<code>liferay-plugin-package.properties</code> file:</p>
+<ol>
+<li>
+<p>Open the <code>src\WEB-INF\liferay-plugin-package.properties</code> file and remove the
+<code>required-deployment-contexts</code> property. This is no longer needed since the
+Resources Importer is bundled with Liferay DXP.</p>
+</li>
+<li>
+<p>The group model class&rsquo;s fully-qualified class name has changed. Replace the
+<code>resources-importer-target-class-name</code> property&rsquo;s value with the updated one
+below:</p>
+</li>
+</ol>
+<pre><code class="language-properties">com.liferay.portal.kernel.model.Group
+</code></pre>
+<p>Now that the <code>liferay-plugin-package.properties</code> is updated, you can update the
+theme&rsquo;s web content.</p>

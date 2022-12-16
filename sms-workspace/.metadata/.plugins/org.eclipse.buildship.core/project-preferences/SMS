@@ -1,0 +1,12 @@
+#
+#Fri Dec 16 12:31:46 IST 2022
+classpath=<?xml version\="1.0" encoding\="UTF-8"?>\n<classpath>\n</classpath>\n
+buildScriptPath=build.gradle
+linkedResources=
+subprojectPaths=modules;modules/branch;modules/common-util;modules/common-utils;modules/common-web;modules/lms-constants;modules/student;modules/branch/branch-api;modules/branch/branch-service;modules/branch/branch-web;modules/common-util/common-util-api;modules/common-util/common-util-service;modules/student/student-api;modules/student/student-service
+managedNatures=org.eclipse.jdt.core.javanature
+hasAutoBuildTasks=false
+gradleVersion=6.6.1
+buildDir=build
+managedBuilders=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><commands/>
+derivedResources=.gradle;build;modules/build;modules/branch/build;modules/common-util/build;modules/common-utils/build;modules/common-web/build;modules/lms-constants/build;modules/student/build;modules/branch/branch-api/build;modules/branch/branch-service/build;modules/branch/branch-web/build;modules/common-util/common-util-api/build;modules/common-util/common-util-service/build;modules/student/student-api/build;modules/student/student-service/build

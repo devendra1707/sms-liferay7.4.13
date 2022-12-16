@@ -1,0 +1,272 @@
+<h1 id="upgrading-code-to-the-new-dxp-version"><a href="#upgrading-code-to-the-new-dxp-version" id="upgrading-code-to-the-new-dxp-version">Upgrading Code to the new DXP version</a></h1>
+<p>Upgrading to the new DXP version involves migrating your installation and code (your
+custom apps) to the new version. You&rsquo;ll learn how to upgrade your code in this
+section.</p>
+<p>These tutorials assume you&rsquo;re using the
+<a href="https://dev.liferay.com/docs/7-2/reference/-/knowledge_base/r/liferay-upgrade-planner">Liferay Upgrade Planner</a>.
+To follow along with this section, install the planner and step through the
+upgrade instructions. You can also use the planner to
+<a href="https://dev.liferay.com/docs/7-2/deploy/-/knowledge_base/d/upgrading-to-product-ver">upgrade your data</a>;
+this is a separate process that must be done independently from the code upgrade
+process.</p>
+<p>For convenience, this tutorial section also references documentation and
+outlined steps to aid those opting to upgrade their code manually.</p>
+<p>Here are the code upgrade steps:</p>
+<ol class="root">
+<li>
+<p><a href="02-upgrading-your-development-environment.html" class="title">Upgrade Your Development Environment</a></p>
+<p><span class="summary">Legacy project environments should be upgraded to the latest version of
+Liferay Workspace to ensure you leverage all available features.</span></p>
+<ol>
+<li>
+<p><a href="02-upgrading-your-development-environment.html#setting-up-liferay-workspace" class="title">Set Up Liferay Workspace</a></p>
+<p><span class="summary">A Liferay Workspace is a generated environment that is built to hold
+and manage your Liferay projects. Create/import a workspace to get
+started.</span></p>
+<ol>
+<li>
+<p><a href="02-upgrading-your-development-environment.html#creating-new-liferay-workspace" class="title" commandId="create_new_liferay_workspace">Create New Liferay Workspace</a></p>
+<p><span class="summary">If you don&rsquo;t have an existing 7.x Liferay Workspace, you must create
+one. Skip to the next step if you have an existing workspace.</span></p>
+</li>
+<li>
+<p><a href="02-upgrading-your-development-environment.html#importing-existing-liferay-workspace" class="title" commandId="import_existing_liferay_workspace">Import Existing Liferay Workspace</a></p>
+<p><span class="summary">Import an existing Liferay Workspace. If you don&rsquo;t have one, revisit
+the previous step.</span></p>
+</li>
+</ol>
+</li>
+<li>
+<p><a href="02-upgrading-your-development-environment.html#configuring-liferay-workspace-settings" class="title">Configure Liferay Workspace Settings</a></p>
+<p><span class="summary">Set the Liferay DXP version in workspace&rsquo;s configuration you intend to
+upgrade to.</span></p>
+<ol>
+<li>
+<p><a href="02-upgrading-your-development-environment.html#configure-workspace-product-key" class="title" commandId="configure_workspace_product_key">Configure Workspace Product Key</a></p>
+<p><span class="summay">Configure your workspace by setting a product key.</span></p>
+</li>
+<li>
+<p><a href="02-upgrading-your-development-environment.html#initializing-server-bundle" commandId="initialize_server_bundle">Initialize Server Bundle</a></p>
+<p>Download the Liferay DXP bundle you&rsquo;re upgrading to.</p>
+</li>
+<li>
+<p><a href="02-upgrading-your-development-environment.html#migrate-cfg-files-to-config-files" class="title" commandId="upgrade-cfg-to-config">Migrate .cfg Files to .config Files</a></p>
+<p>Convert <code>.cfg</code> files to <code>.config</code><span class="summay"> files.</span></p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p><a href="03-migrating-plugins-sdk-projects-to-liferay-workspace.html" class="title">Migrate Plugins SDK Projects</a></p>
+<p><span class="summary">Copy your Plugins SDK projects into workspace and convert them to
+Gradle/Maven projects.</span></p>
+<ol>
+<li>
+<p><a href="03-migrating-plugins-sdk-projects-to-liferay-workspace.html#importing-existing-plugins-sdk-projects" class="title" commandId="import_existing_plugins_sdk">Import Existing Plugins SDK Projects</a></p>
+<p><span class="summary">Import your existing Plugins SDK projects.</span></p>
+</li>
+<li>
+<p><a href="03-migrating-plugins-sdk-projects-to-liferay-workspace.html#migrating-existing-plugins-to-workspace" class="title" commandId="migrate_existing_plugins_to_workspace">Migrate Existing Plugins to Workspace</a></p>
+<p><span class="summary">Migrate your existing plugins to workspace. This involves moving the
+plugin to workspace and converting it to the workspace&rsquo;s build
+environment.</span></p>
+</li>
+</ol>
+</li>
+<li>
+<p><a href="04-upgrading-build-dependencies.html" class="title">Upgrade Build Dependencies</a></p>
+<p><span class="summary">Optimize your workspace&rsquo;s build environment for the most efficient code
+upgrade experience.</span></p>
+<ol>
+<li>
+<p><a href="04-upgrading-build-dependencies.html#updating-the-repository-url" class="title" commandId="update_repository_url">Update Repository URL</a></p>
+<p><span class="summary">Update your repository URL to Liferay&rsquo;s frequently updated CDN
+repository.</span></p>
+</li>
+<li>
+<p><a href="04-upgrading-build-dependencies.html#updating-the-workspace-plugin-version" class="title" commandId="update_workspace_plguin_version">Update Workspace Plugin Version</a></p>
+<p><span class="summary">Update your Workspace plugin version to leverage the latest features of
+Liferay Workspace.</span></p>
+</li>
+<li>
+<p><a href="04-upgrading-build-dependencies.html#removing-your-projects-build-dependency-versions" class="title" commandId="remove_dependency_version">Remove Dependency Versions</a></p>
+<p><span class="summary">Remove the project&rsquo;s dependency versions since it&rsquo;s leveraging target
+platform.</span></p>
+</li>
+<li>
+<p><a href="04-upgrading-build-dependencies.html#switch-to-use-release-api-dependency" class="title" commandId="switch_to_use_release_api_dependency">Switch to Use Release API Dependency</a></p>
+<p><span class="summary">Switch to use release.dxp.api or release.portal.api as depency whitch include required dependencies.</span></p>
+</li>
+</ol>
+</li>
+<li>
+<p><a href="05-fixing-upgrade-problems/01-intro.html" class="title">Fix Upgrade Problems</a></p>
+<p><span class="summary">Fix common upgrade problems dealing with your project&rsquo;s dependencies and
+breaking changes.</span></p>
+<ol>
+<li>
+<p><a href="05-fixing-upgrade-problems/01-intro.html#auto-correcting-upgrade-problems" class="title" commandId="auto_correct_find_upgrade_problems">Auto-Correct Upgrade Problems</a></p>
+<p><span class="summary">Auto-correct straightforward upgrade problems.</span></p>
+</li>
+<li>
+<p><a href="05-fixing-upgrade-problems/01-intro.html#finding-upgrade-problems" class="title" commandId="find_upgrade_problems">Find Upgrade Problems</a></p>
+<p><span class="summary">Find upgrade problems. These are problems that cannot be auto-corrected;
+you can update them manually according to the breaking changes
+documentation.</span></p>
+</li>
+<li>
+<p><a href="05-fixing-upgrade-problems/01-intro.html#resolving-upgrade-problems" class="title">Resolve Upgrade Problems</a></p>
+<p><span class="summary">Mark upgrade problems as resolved after addressing them.</span></p>
+</li>
+<li>
+<p><a href="05-fixing-upgrade-problems/01-intro.html#removing-problem-markers" class="title" commandId="remove_upgrade_problems_markers">Remove Problem Markers</a></p>
+<p><span class="summary">After fixing your upgrade problems, remove the problem markers.</span></p>
+</li>
+<li>
+<p><a href="05-fixing-upgrade-problems/02-resolving-a-projects-dependencies.html">Resolving a Project&rsquo;s Dependencies</a></p>
+</li>
+<li>
+<p><a href="05-fixing-upgrade-problems/03-resolving-breaking-changes.html">Resolving Breaking Changes</a></p>
+</li>
+</ol>
+</li>
+<li>
+<p><a href="06-upgrading-service-builder-services/01-intro.html" class="title">Upgrade Service Builder Services</a></p>
+<p><span class="summary">Upgrade your Liferay Service Builder services.</span></p>
+<ol>
+<li>
+<p><a href="06-upgrading-service-builder-services/02-removing-legacy-files.html" class="title" commandId="remove_legacy_files">Remove Legacy Files</a></p>
+<p><span class="summary">Remove legacy files that are no longer leveraged by Service Builder.</span></p>
+</li>
+<li>
+<p><a href="06-upgrading-service-builder-services/03-converting-a-service-builder-module-from-spring-di-to-osgi-ds.html" class="title">Migrate from Spring DI to OSGi Declarative Services</a></p>
+<p><span class="summary">Leverage OSGi Declarative Services in your Service Builder project.</span></p>
+</li>
+<li>
+<p><a href="06-upgrading-service-builder-services/04-rebuilding-services.html" class="title" commandId="rebuild_services">Rebuild Services</a></p>
+<p><span class="summary">Rebuild your project&rsquo;s services to persist your updates.</span></p>
+</li>
+</ol>
+</li>
+<li>
+<p><a href="07-upgrading-customization-plugins/01-intro.html" class="title">Upgrade Customization Plugins</a></p>
+<p><span class="summary">Upgrade your customization plugins so they&rsquo;re deployable to the new DXP version.</span></p>
+<ol>
+<li>
+<p><a href="07-upgrading-customization-plugins/02-upgrading-customization-modules.html" class="title">Upgrade Customization Modules</a></p>
+</li>
+<li>
+<p><a href="07-upgrading-customization-plugins/03-upgrading-core-jsp-hooks.html" class="title">Upgrade Core JSP Hooks</a></p>
+</li>
+<li>
+<p><a href="07-upgrading-customization-plugins/04-upgrading-portlet-jsp-hooks.html" class="title">Upgrade Portlet JSP Hooks</a></p>
+</li>
+<li>
+<p><a href="07-upgrading-customization-plugins/05-upgrading-service-wrapper-hooks.html" class="title">Upgrade Service Wrapper Hooks</a></p>
+</li>
+<li>
+<p><a href="07-upgrading-customization-plugins/06-upgrading-core-language-key-hooks.html" class="title">Upgrade Core Language Key Hooks</a></p>
+</li>
+<li>
+<p><a href="07-upgrading-customization-plugins/07-upgrading-portlet-language-key-hooks.html" class="title">Upgrade Portlet Language Key Hooks</a></p>
+</li>
+<li>
+<p><a href="07-upgrading-customization-plugins/08-upgrading-model-listener-hooks.html" class="title">Upgrade Model Listener Hooks</a></p>
+</li>
+<li>
+<p><a href="07-upgrading-customization-plugins/09-upgrading-event-actions-hooks.html" class="title">Upgrade Event Action Hooks</a></p>
+</li>
+<li>
+<p><a href="07-upgrading-customization-plugins/10-upgrading-servlet-filter-hooks.html" class="title">Upgrade Servlet Filter Hooks</a></p>
+</li>
+<li>
+<p><a href="07-upgrading-customization-plugins/11-upgrading-portal-property-hooks.html" class="title">Upgrade Portal Properties Hooks</a></p>
+</li>
+<li>
+<p><a href="07-upgrading-customization-plugins/12-upgrading-struts-action-hooks.html" class="title">Upgrade Struts Action Hooks</a></p>
+</li>
+</ol>
+</li>
+<li>
+<p><a href="08-upgrading-themes/01-upgrading-a-theme-to-7-2-intro.html" class="title">Upgrade Themes</a></p>
+<p><span class="summary">Upgrade your themes so they&rsquo;re deployable to the new DXP version.</span></p>
+<ol>
+<li>
+<p><a href="08-upgrading-themes/02-upgrading-6.2-themes-7.2/01-upgrading-6.2-themes-to-7.1-intro.html" class="title">Upgrade 6.2 Themes to 7.2</a></p>
+</li>
+<li>
+<p><a href="08-upgrading-themes/03-upgrading-7.0-themes-7.2/01-upgrading-7.0-themes-intro.html" class="title">Upgrade 7.0 Themes to 7.2</a></p>
+</li>
+<li>
+<p><a href="08-upgrading-themes/04-upgrading-7.1-themes-7.2/01-upgrading-7-1-themes-7-2-intro.html" class="title">Upgrade 7.1 Themes to 7.2</a></p>
+</li>
+</ol>
+</li>
+<li>
+<p><a href="09-upgrading-layout-templates/01-upgrading-layout-templates-to-7.2-intro.html" class="title">Upgrade Layout Templates</a></p>
+<p><span class="summary">Upgrade your layout templates so they&rsquo;re deployable to the new DXP version.</span></p>
+</li>
+<li>
+<p><a href="10-upgrading-frameworks-and-features/01-intro.html" class="title">Upgrade Frameworks &amp; Features</a></p>
+<ol>
+<li>
+<p><a href="10-upgrading-frameworks-and-features/02-upgrading-jndi-data-source-usage.html" class="title">Upgrade JNDI Data Source Usage</a></p>
+<p><span class="summary">Use Liferay DXP&rsquo;s class loader to access the app server&rsquo;s JNDI API.</span></p>
+</li>
+<li>
+<p><a href="10-upgrading-frameworks-and-features/03-upgrading-service-builder-service-invocation.html" class="title">Upgrade Service Builder Service Invocation</a></p>
+<p><span class="summary">For Service Builder logic remaining in a WAR, you must implement a
+service tracker to call services. For logic divided into OSGi modules,
+you can leverage Declarative Services.</span></p>
+</li>
+<li>
+<p><a href="10-upgrading-frameworks-and-features/04-upgrading-service-builder.html" class="title">Upgrade Service Builder</a></p>
+<p><span class="summary">Adapt your app to account for Service Builder-specific changes.</span></p>
+</li>
+<li>
+<p><a href="10-upgrading-frameworks-and-features/05-migrating-off-of-velocity-templates.html" class="title">Migrate Off of Velocity Templates</a></p>
+<p><span class="summary">Velocity template usage is deprecated for the new DXP version. You should
+convert your template to FreeMarker.</span></p>
+</li>
+</ol>
+</li>
+<li>
+<p><a href="11-upgrading-portlets/01-intro.html" class="title">Upgrade Portlets</a></p>
+<p><span class="summary">Upgrade your portlets so they&rsquo;re deployable to the new DXP version.</span></p>
+<ol>
+<li>
+<p><a href="11-upgrading-portlets/02-upgrading-a-genericportlet.html" class="title">Upgrade Generic Portlets</a></p>
+</li>
+<li>
+<p><a href="11-upgrading-portlets/03-upgrading-a-liferay-mvc-portlet.html" class="title">Upgrade Liferay MVC Portlets</a></p>
+</li>
+<li>
+<p><a href="11-upgrading-portlets/04-upgrading-a-liferay-jsf-portlet.html" class="title">Upgrade JSF Portlets</a></p>
+</li>
+<li>
+<p><a href="11-upgrading-portlets/05-upgrading-a-servlet-based-portlet.html" class="title">Upgrade Servlet-based Portlets</a></p>
+</li>
+<li>
+<p><a href="11-upgrading-portlets/06-upgrading-a-spring-portlet-mvc-portlet.html" class="title">Upgrading Spring Portlet MVC Portlets</a></p>
+</li>
+<li>
+<p><a href="11-upgrading-portlets/07-upgrading-a-struts-1-portlet.html" class="title">Upgrade Struts 1 Portlets</a></p>
+</li>
+</ol>
+</li>
+<li>
+<p><a href="12-upgrading-web-plugins.html" class="title">Upgrade Web Plugins</a></p>
+<p>Upgrade web plugins previously stored in the <code>webs</code><span class="summary"> folder of your legacy
+Plugins SDK.</span></p>
+</li>
+<li>
+<p><a href="13-upgrading-ext-plugins.html" class="title">Upgrade Ext Plugins</a></p>
+<p><span class="summary">Attempt to leverage an extension point instead of upgrading your Ext plugin.
+If an Ext plugin is necessary, you must review all changes between the
+previous Liferay Portal instance you were using and the new DXP version, and then
+manually modify your Ext plugin to merge your changes with Liferay DXP&rsquo;s.</span></p>
+</li>
+</ol>
+<p>Once you&rsquo;ve finished the code upgrade steps, your custom apps will be compatible
+with the new DXP version!</p>

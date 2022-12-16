@@ -1,0 +1,53 @@
+<h1 id="upgrading-a-spring-portlet-mvc-portlet"><a href="#upgrading-a-spring-portlet-mvc-portlet" id="upgrading-a-spring-portlet-mvc-portlet">Upgrading a Spring Portlet MVC Portlet</a></h1>
+<div class="learn-path-step">
+    <p>Upgrading Portlets<br>Step 5 of 6</p>
+</div>
+<p>Upgraded portlets that use Spring Portlet MVC should be migrated to use
+PortletMVC4Spring. The main reason is that PortletMVC4Spring is maintained for
+compatibility with the latest versions of the Spring Framework.</p>
+<aside>
+<p><strong>Note:</strong> The PortletMVC4Spring project began as Spring Portlet MVC and was
+part of the <a href="https://spring.io/projects/spring-framework">Spring Framework</a>.
+When the project was pruned from version 5.0.x of the Spring Framework under
+<a href="https://github.com/spring-projects/spring-framework/issues/18701">SPR-14129</a>,
+it became necessary to fork and rename the project. This made it possible to
+improve and maintain the project for compatibility with the latest versions of
+the Spring Framework and the Portlet API.</p>
+</aside>
+<aside>
+<p><a href="http://www.liferay.com/">Liferay</a> adopted Spring Portlet MVC in March of 2019
+and the project was renamed to PortletMVC4Spring.</p>
+</aside>
+<p>For more information on PortletMVC4Spring, see its dedicated
+<a href="https://dev.liferay.com/docs/7-2/appdev/-/knowledge_base/a/portletmvc4spring">section of articles</a>.
+For specific information on migrating a portlet using Spring Portlet MVC to
+PortletMVC4Spring, see the
+<a href="https://dev.liferay.com/docs/7-2/appdev/-/knowledge_base/a/migrating-to-portletmvc4spring">Migrating to PortletMVC4Spring</a>
+article.</p>
+<p>Once you&rsquo;ve migrated your portlet to leverage the PortletMVC4Spring framework,
+you must also adapt your Liferay-specific APIs and dependencies. To do this,
+complete the following steps:</p>
+<ol>
+<li>
+<p>Adapt the portlet to the new DXP version&rsquo;s API using the Liferay Upgrade Planner.
+When running the planner&rsquo;s <em>Fix Upgrade Problems</em> step, many of the existing
+issues are autocorrected. For remaining issues, the planner identifies code
+affected by the new API and ways to adapt it.</p>
+</li>
+<li>
+<p><a href="../05-fixing-upgrade-problems/02-resolving-a-projects-dependencies.html">Resolve its dependencies</a></p>
+</li>
+<li>
+<p><a href="https://dev.liferay.com/docs/7-2/reference/-/knowledge_base/r/deploying-a-project">Deploy it</a></p>
+</li>
+</ol>
+<p>After deploying the upgraded portlet, the server prints messages that indicate
+the following portlet status:</p>
+<ul>
+<li>WAR processing</li>
+<li>WAB startup</li>
+<li>Availability to users</li>
+</ul>
+<p>You&rsquo;ve migrated your Spring Portlet MVC portlet to the updated PortletMVC4Spring
+framework, updated any additional APIs and dependencies, and deployed it to your
+the new DXP version instance. Your portlet&rsquo;s upgrade process is complete!</p>

@@ -1,0 +1,35 @@
+<h1 id="updating-62-navigation-theme-template"><a href="#updating-62-navigation-theme-template" id="updating-62-navigation-theme-template">Updating 6.2 Navigation Theme Template</a></h1>
+<div class="learn-path-step row">
+    <p id="stepTitle">Updating 6.2 Theme Templates</p><p>Step 2 of 3</p>
+</div>
+<p>Follow these steps to update <code>navigation.ftl</code>:</p>
+<ol>
+<li>
+<p>Below the <code>&lt;nav class=&quot;${nav_css_class}&quot; id=&quot;navigation&quot; role=&quot;navigation&quot;&gt;</code>
+element, add the heading below to improve accessibility for screen readers:</p>
+<pre><code class="language-html">&lt;h1 class=&quot;hide-accessible&quot;&gt;
+    &lt;@liferay.language key=&quot;navigation&quot; /&gt;
+&lt;/h1&gt;
+</code></pre>
+</li>
+<li>
+<p>Remove the <code>nav_item_attr_selected</code> variable declaration at the top, and add
+the layout declaration shown below instead, to access the layout. Don&rsquo;t
+forget to remove all uses of <code>nav_item_attr_selected</code> throughout the rest of
+the template:</p>
+<pre><code class="language-markup">&lt;#assign nav_item_layout = nav_item.getLayout() /&gt;
+</code></pre>
+</li>
+<li>
+<p>Replace the <code>${nav_item.icon()}</code>variable in the
+<code>&lt;a aria-labelledby=&quot;layout_${nav_item.getLayoutId()}&quot;...&lt;/a&gt;</code> anchor with
+the element below:</p>
+<pre><code class="language-markup">&lt;@liferay_theme[&quot;layout-icon&quot;] layout=nav_item_layout /&gt;
+</code></pre>
+</li>
+<li>
+<p>Remove the <code>nav_child_attr_selected</code> variable from the bottom of the
+template, including all uses throughout the rest of the template.</p>
+</li>
+</ol>
+<p>The navigation template is updated. You can update <code>portlet.ftl</code> next.</p>

@@ -1,0 +1,14 @@
+Bundle-Name: common-util-service
+Bundle-SymbolicName: com.armantec.lms.common.util.services.service
+Bundle-Version: 1.0.0
+Import-Package: \
+*;resolution:=optional
+Include-Resource: @poi-4.0.1.jar, @poi-ooxml-4.0.1.jar, @poi-ooxml-schemas-4.0.1.jar, @xml-apis-1.4.01.jar, @xmlbeans-3.0.2.jar,@commons-io-2.11.0.jar
+
+
+
+
+
+Liferay-Require-SchemaVersion: 1.0.0
+Liferay-Service: true
+-dsannotations-options: inherit

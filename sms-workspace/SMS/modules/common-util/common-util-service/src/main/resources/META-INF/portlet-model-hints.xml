@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.armantec.lms.common.util.services.model.Translation">
+		<field name="uuid" type="String" />
+		<field name="id" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="modifiedBy" type="long" />
+		<field name="modifiedByName" type="String" />
+		<field name="deleted" type="boolean" />
+		<field name="languageCode" type="String">
+			<hint name="max-length">2048</hint>
+		</field>
+		<field name="modelName" type="String" />
+		<field name="columnName" type="String" />
+		<field name="text" type="String">
+			<hint name="max-length">456340</hint>
+		</field>
+		<field name="recordId" type="long" />
+	</model>
+</model-hints>

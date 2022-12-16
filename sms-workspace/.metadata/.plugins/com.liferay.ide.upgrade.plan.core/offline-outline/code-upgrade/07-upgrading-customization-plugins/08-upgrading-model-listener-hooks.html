@@ -1,0 +1,22 @@
+<h1 id="upgrading-model-listener-hooks"><a href="#upgrading-model-listener-hooks" id="upgrading-model-listener-hooks">Upgrading Model Listener Hooks</a></h1>
+<div class="learn-path-step row">
+    <p id="stepTitle">Upgrading Customization Plugins</p><p>Step 7 of 11</p>
+</div>
+<p>Developers have been creating model listeners for several Liferay DXP
+versions. Upgrading model listener Hooks from previous portal versions has never
+been easier.</p>
+<ol>
+<li>
+<p>Adapt your code to the new DXP version&rsquo;s API using the Liferay Upgrade Planner. When
+you ran the planner&rsquo;s <em>Fix Upgrade Problems</em> step, many of the existing
+issues were autocorrected/flagged. For any remaining errors, consult the
+<a href="../05-fixing-upgrade-problems/02-resolving-a-projects-dependencies.html">Resolving a Project&rsquo;s Dependencies</a>
+article.</p>
+</li>
+<li>
+<p>Deploy your hook plugin.</p>
+</li>
+</ol>
+<p>Liferay DXP&rsquo;s Plugin Compatibility Layer converts the plugin WAR to a Web
+Application Bundle (WAB) and installs it to Liferay&rsquo;s OSGi Runtime.</p>
+<p>Your model listener hook is now available in Liferay DXP.</p>

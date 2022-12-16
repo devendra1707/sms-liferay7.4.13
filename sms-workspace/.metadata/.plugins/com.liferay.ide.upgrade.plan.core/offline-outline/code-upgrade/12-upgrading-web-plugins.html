@@ -1,0 +1,32 @@
+<h1 id="upgrading-web-plugins"><a href="#upgrading-web-plugins" id="upgrading-web-plugins">Upgrading Web Plugins</a></h1>
+<div class="learn-path-step row">
+    <p id="stepTitle">Upgrading Web Plugins</p><p>Step 1 of 1</p>
+</div>
+<p>Web plugins are regular
+<a href="https://docs.oracle.com/cd/E19226-01/820-7627/bnadx/index.html">Java EE web modules</a>
+designed to work with Liferay DXP. These plugins were stored in the <code>webs</code> folder
+of the legacy Plugins SDK.</p>
+<p>Upgrading a Liferay web plugin involves these steps:</p>
+<ol>
+<li>
+<p>Adapt the plugin to the new DXP version&rsquo;s API using the Liferay Upgrade Planner.
+When running the planner&rsquo;s <em>Fix Upgrade Problems</em> step, many of the existing
+issues are autocorrected. For remaining issues, the planner identifies code
+affected by the new API and ways to adapt it.</p>
+</li>
+<li>
+<p><a href="05-fixing-upgrade-problems/02-resolving-a-projects-dependencies.html">Resolve its dependencies</a></p>
+</li>
+<li>
+<p><a href="https://dev.liferay.com/docs/7-2/reference/-/knowledge_base/r/deploying-a-project">Deploy it</a></p>
+</li>
+</ol>
+<p>After deploying the upgraded portlet, the server prints messages that indicate
+the following portlet status:</p>
+<ul>
+<li>WAR processing</li>
+<li>WAB startup</li>
+<li>Availability to users</li>
+</ul>
+<p>You&rsquo;ve upgraded and deployed your Liferay web plugin on your the new DXP version
+instance. Great job!</p>

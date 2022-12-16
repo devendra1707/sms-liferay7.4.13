@@ -1,0 +1,85 @@
+<h1 id="applying-clay-design-patterns"><a href="#applying-clay-design-patterns" id="applying-clay-design-patterns">Applying Clay Design Patterns</a></h1>
+<p>the new DXP version uses <a href="https://clayui.com/">Clay</a>, a web implementation of
+Liferay&rsquo;s <a href="https://lexicondesign.io/">Lexicon Experience Language</a>. The Lexicon
+Experience Language provides styling guidelines and best practices for
+application UIs. Clay&rsquo;s CSS, HTML, and JavaScript components enable developers
+to build fully-realized UIs quickly and effectively. Liferay DXP&rsquo;s
+<a href="../../03-upgrading-7.0-themes-7.2/05-bootstrap-lexicon-compatibility-layer.html">compatibility layer</a>
+let&rsquo;s you use <a href="https://lexiconcss.wedeploy.io/">Lexicon CSS</a> markup alongside
+<a href="https://clayui.com/">Clay CSS</a>.</p>
+<aside>
+<p><strong>Note:</strong> The compatibility layer is meant as a short-term solution to ensure
+that your Bootstrap 3 and Lexicon CSS components aren&rsquo;t broken while you
+update your theme to use <a href="https://getbootstrap.com/docs/4.3/migration/">Bootstrap 4</a>
+and <a href="https://clayui.com/docs/css-framework/scss.html">Clay CSS</a>. It will be
+disabled in a future release. Migrate your theme to use Bootstrap 4 and Clay
+CSS as soon as you&rsquo;re able to.</p>
+</aside>
+<p>This section demonstrates how to apply Clay to the Lunar Resort&rsquo;s form.</p>
+<p>Follow these steps:</p>
+<ol>
+<li>
+<p>Replace the <code>control-group</code> classes with <code>form-group</code> classes:</p>
+</li>
+<li>
+<p>Remove the <code>control-label</code> classes from the <code>label</code> elements:</p>
+</li>
+<li>
+<p>Remove <code>&lt;div class=&quot;controls&quot;&gt;</code> elements.</p>
+</li>
+<li>
+<p>Add the <code>form-control</code> class to each <code>input</code> element.</p>
+</li>
+<li>
+<p>Add the <code>btn-primary</code> class to your submit buttons to emphasize them.</p>
+</li>
+</ol>
+<p>The Lunar Resort&rsquo;s original form and updated form are shown below:</p>
+<p>Original form markup:</p>
+<pre><code class="language-html">&lt;form class=&quot;form-horizontal&quot;&gt;
+        &lt;fieldset&gt;
+          &lt;legend&gt;Reservation Form&lt;/legend&gt;
+          &lt;div class=&quot;control-group&quot;&gt;
+              &lt;label class=&quot;control-label&quot; for=&quot;inputName&quot;&gt;Name&lt;/label&gt;
+              &lt;div class=&quot;controls&quot;&gt;
+                      &lt;input type=&quot;text&quot; id=&quot;inputName&quot;
+                      placeholder=&quot;Enter your Name here&quot; required=&quot;required&quot;&gt;
+                  &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;control-group&quot;&gt;
+              &lt;label class=&quot;control-label&quot; for=&quot;inputEmail&quot;&gt;Email&lt;/label&gt;
+              &lt;div class=&quot;controls&quot;&gt;
+                  &lt;input type=&quot;email&quot; id=&quot;inputEmail&quot;
+                  placeholder=&quot;Enter your E-Mail here&quot; required=&quot;required&quot;&gt;
+              &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;control-group&quot;&gt;
+              &lt;div class=&quot;controls&quot;&gt;
+                  &lt;button type=&quot;submit&quot; class=&quot;btn&quot;&gt;Submit&lt;/button&gt;
+              &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/fieldset&gt;
+&lt;/form&gt;
+</code></pre>
+<p>Updated form markup:</p>
+<pre><code class="language-html">&lt;form role=&quot;form-horizontal&quot;&gt;
+        &lt;fieldset&gt;
+          &lt;legend&gt;Reservation Form&lt;/legend&gt;
+          &lt;div class=&quot;form-group&quot;&gt;
+              &lt;label for=&quot;inputName&quot;&gt;Name&lt;/label&gt;
+              &lt;input type=&quot;text&quot; id=&quot;inputName&quot; class=&quot;form-control&quot;
+              placeholder=&quot;Enter your Name here&quot; required=&quot;required&quot;&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;form-group&quot;&gt;
+              &lt;label for=&quot;inputEmail&quot;&gt;Email&lt;/label&gt;
+              &lt;input type=&quot;email&quot; id=&quot;inputEmail&quot; class=&quot;form-control&quot;
+              placeholder=&quot;Enter your E-Mail here&quot; required=&quot;required&quot;&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;form-group&quot;&gt;
+                  &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary&quot;&gt;Submit
+                  &lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/fieldset&gt;
+&lt;/form&gt;
+</code></pre>
+<p>The Lunar Resort theme is updated for the new DXP version!</p>

@@ -1,0 +1,10 @@
+Bundle-Name: student-api
+Bundle-SymbolicName: com.armantec.sms.student.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.armantec.sms.student.exception,\
+	com.armantec.sms.student.model,\
+	com.armantec.sms.student.service,\
+	com.armantec.sms.student.service.persistence
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../student-service/service.xml

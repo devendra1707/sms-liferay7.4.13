@@ -1,0 +1,37 @@
+<h1 id="updating-70-class-variables"><a href="#updating-70-class-variables" id="updating-70-class-variables">Updating 7.0 Class Variables</a></h1>
+<div class="learn-path-step row">
+    <p id="stepTitle">Updating 7.0 CSS Code</p><p>Step 2 of 3</p>
+</div>
+<p>the new DXP version uses Bootstrap 4&rsquo;s CSS rule syntax. The new syntax lets developers
+leverage Bootstrap 4 features and improvements. The <a href="https://getbootstrap.com/docs/4.0/migration/">Migrating to v4 guide</a>
+provides complete instructions for updating CSS rules to Bootstrap 4.</p>
+<p>Follow these steps to upgrade the theme&rsquo;s CSS variables:</p>
+<ol>
+<li>
+<p>Consult the upgrade log produced by the <code>gulp upgrade</code> task. It suggests the
+manual Lexicon updates required for the theme.</p>
+</li>
+<li>
+<p>Make the required changes in the log. The log lists removed and/or
+deprecated variables and suggests possible changes. For each update
+performed or suggested, the task reports a file name. For example, here is
+part of the task log for the 7.0 Westeros Bank theme:</p>
+</li>
+</ol>
+<pre><code class="language-bash">----------------------------------------------------------------
+ Lexicon Upgrade (1.0 to 2.0)
+----------------------------------------------------------------
+
+File: _variables_custom.scss
+    $brand-default was deprecated in Lexicon CSS 1.x.x and has been removed 
+		in the new Clay 2.x.x version
+</code></pre>
+<aside>
+<p><strong>Note:</strong> If the <code>gulp upgrade</code> task detects any variables in the theme that
+are removed in Clay from the previous LexiconCSS version, it adds a
+<code>_variables_deprecated.scss</code> file to the theme containing the removed
+variables, to make sure the theme compiles and to decouple it from future
+upgrades.</p>
+</aside>
+<p>After updating your theme&rsquo;s CSS variables and mixins, you should update the
+imports next.</p>

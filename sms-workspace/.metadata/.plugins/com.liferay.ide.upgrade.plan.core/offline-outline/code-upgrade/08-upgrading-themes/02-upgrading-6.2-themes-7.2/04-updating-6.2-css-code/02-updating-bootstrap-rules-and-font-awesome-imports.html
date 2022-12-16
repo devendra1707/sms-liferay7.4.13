@@ -1,0 +1,128 @@
+<h1 id="updating-62-css-rules-and-imports"><a href="#updating-62-css-rules-and-imports" id="updating-62-css-rules-and-imports">Updating 6.2 CSS Rules and Imports</a></h1>
+<div class="learn-path-step row">
+    <p id="stepTitle">Updating 6.2 CSS Code<p><p>Step 1 of 2</p>
+</div>
+<p>the new DXP version uses Bootstrap 4.3&rsquo;s CSS rule syntax. Font Awesome icons have been
+removed from base themes, so you should remove those stale imports if you have
+them. The Gulp <code>upgrade</code> task reports automatic CSS updates and suggests manual
+updates. For example, here is part of the task log for the Lunar Resort theme
+upgrade from 6.2 to 7.0. For each update performed and suggested, the task
+reports a file name and line number range:</p>
+<pre><code class="language-bash">----------------------------------------------------------------
+ Bootstrap Upgrade (2 to 3)
+----------------------------------------------------------------
+
+Because Liferay Portal 7.0 uses Bootstrap 3, the default box model has been 
+changed to box-sizing: border-box. So if you were using width or height, and 
+padding together on an element, you may need to make changes, or those elements 
+may have unexpected sizes.
+
+File: src/css/_aui_variables.scss
+    Line 5: &quot;$white&quot; has been removed
+    Line 31: &quot;$white&quot; has been removed
+File: src/css/_custom.scss
+    Line 201: Padding no longer affects width or height, you may need to change 
+    your rule (lines 201-227)
+    Line 207: Padding no longer affects width or height, you may need to change 
+    your rule (lines 207-226)
+    Line 212: You would change height from &quot;62px&quot; to &quot;82px&quot;
+    Line 305: Padding no longer affects width or height, you may need to change 
+    your rule (lines 305-314)
+    Line 308: You would change height from &quot;39px&quot; to &quot;46px&quot;
+    Line 409: Padding no longer affects width or height, you may need to change 
+    your rule (lines 409-418)
+</code></pre>
+<p>Follow these steps to update your theme&rsquo;s Bootstrap rules and Font Awesome
+imports:</p>
+<ol>
+<li>
+<p>Since Bootstrap 3 adopted the <code>box-sizing: border-box</code> property for all
+elements and pseudo-elements (e.g., <code>:before</code> and <code>:after</code>), padding no
+longer affects dimensions.
+<a href="https://getbootstrap.com/docs/3.3/css/#less-mixins-box-sizing">Bootstrap&rsquo;s documentation</a>
+describes the box sizing changes. Update the width and height for all CSS
+rules that use padding. For example, examine the <code>height</code> value change in
+this CSS rule for the Lunar Resort theme&rsquo;s <code>_custom.scss</code> file:</p>
+<p>Original:</p>
+<pre><code class="language-css">#reserveBtn {
+	background-color: #00C4FB;
+	border-radius: 10px;
+	color: #FFF;
+	font-size: 1.5em;
+	height: 62px;
+	margin: 30px;
+	padding: 10px 0;
+	...
+}
+</code></pre>
+<p>Updated:</p>
+<pre><code class="language-css">#reserveBtn {
+	background-color: #00C4FB;
+	border-radius: 10px;
+	color: #FFF;
+	font-size: 1.5em;
+	height: 82px;
+	margin: 30px;
+	padding: 10px 0;
+	...
+}
+</code></pre>
+<aside>
+<p><strong>Note:</strong> For individual elements, you can overwrite the
+<code>box-sizing:border-box</code> rule with <code>box-sizing:content-box</code>.</p>
+</aside>
+</li>
+<li>
+<p>The following variables are removed in Bootstrap 4. Remove these variables
+where they are used in the theme:</p>
+<pre><code class="language-scss">$line-height-computed
+$padding-base-horizontal
+$padding-base-vertical
+$padding-large-horizontal
+$padding-large-vertical
+$padding-small-horizontal
+$padding-small-vertical
+$padding-xs-horizontal
+$padding-xs-vertical
+$gray-base
+$gray-darker
+$gray-dark
+$gray
+$gray-light
+$gray-lighter
+$brand-primary
+$brand-success
+$brand-info
+$brand-warning
+$brand-danger
+$state-success-text
+$state-success-bg
+$state-success-border
+$state-info-text
+$state-info-bg
+$state-info-border
+$state-warning-text
+$state-warning-bg
+$state-warning-border
+$state-danger-text
+$state-danger-bg
+$state-danger-border
+</code></pre>
+<p>See the
+<a href="http://getbootstrap.com/migration/#migrating-from-2x-to-30">Migrating from 2.x to 3.0 guide</a>
+for CSS rules that changed in Bootstrap 3. Likewise, you can refer to the
+<a href="https://getbootstrap.com/docs/4.3/migration/">Migrating to v4 guide</a>
+for updating CSS rules to Bootstrap 4.</p>
+</li>
+<li>
+<p>Font Awesome icons were removed from the theme and Font are now included as
+a package dependency if you answer yes (y) to include Font Awesome during
+the upgrade task. If you included the old imports in <code>_custom.scss</code>, they
+must be removed:</p>
+<pre><code class="language-scss">@import &quot;aui/alloy-font-awesome/scss/mixins-alloy&quot;;
+@import &quot;aui/alloy-font-awesome/scss/variables&quot;;
+</code></pre>
+</li>
+</ol>
+<p>Great! The rules and imports are updated. You can update the responsiveness
+next.</p>

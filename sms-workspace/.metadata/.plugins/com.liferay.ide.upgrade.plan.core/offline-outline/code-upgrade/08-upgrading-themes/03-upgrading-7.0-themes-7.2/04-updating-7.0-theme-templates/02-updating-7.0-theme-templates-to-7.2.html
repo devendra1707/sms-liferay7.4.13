@@ -1,0 +1,57 @@
+<h1 id="updating-70-theme-templates"><a href="#updating-70-theme-templates" id="updating-70-theme-templates">Updating 7.0 Theme Templates</a></h1>
+<p>Follow these steps to update the theme&rsquo;s templates. Note these changes are only
+required if the templates are modified in the theme:</p>
+<ol>
+<li>
+<p>Open <code>portal_normal.ftl</code> and remove the breadcrumbs:</p>
+<pre><code class="language-html">&lt;nav id=&quot;breadcrumbs&quot;&gt;		
+    &lt;@liferay.breadcrumbs /&gt;		
+&lt;/nav&gt;
+</code></pre>
+</li>
+<li>
+<p>Still inside <code>portal_normal.ftl</code>, remove <code>id=&quot;main-surface&quot;</code> from the <code>body</code>
+tag so it looks like the one below. This is not needed for SPA to work
+properly:</p>
+<pre><code class="language-html">&lt;body class=&quot;${css_class}&quot;&gt;
+</code></pre>
+</li>
+<li>
+<p>Open <code>navigation.ftl</code> and remove the <code>nav_item_attr_selected</code> variable
+declaration at the top. Don&rsquo;t forget to remove all uses of the
+<code>nav_item_attr_selected</code> throughout the rest of the template.</p>
+</li>
+<li>
+<p>Also inside <code>navigation.ftl</code>, remove the <code>nav_child_attr_selected</code> variable
+from the bottom of the template, including all uses throughout the rest of
+the template.</p>
+</li>
+<li>
+<p>Open <code>portlet.ftl</code> and find the code snippet below:</p>
+<pre><code class="language-html">&lt;a 
+  class=&quot;icon-monospaced portlet-icon-back text-default&quot; 
+  href=&quot;${portlet_back_url}&quot; 
+  title=&quot;&lt;@liferay.language key=&quot;return-to-full-page&quot; /&gt;&quot;
+&gt;
+</code></pre>
+<p>Add the <code>list-unstyled</code> class to it:</p>
+<pre><code class="language-html">&lt;a 
+  class=&quot;icon-monospaced list-unstyled portlet-icon-back text-default&quot; 
+  href=&quot;${portlet_back_url}&quot; 
+  title=&quot;&lt;@liferay.language key=&quot;return-to-full-page&quot; /&gt;&quot;
+&gt;
+</code></pre>
+</li>
+<li>
+<p>Still inside <code>portlet.ftl</code>, find the
+<code>&lt;div class=&quot;autofit-float autofit-row&quot;&gt;</code> element and add the
+<code>portlet-header</code> class to it:</p>
+<pre><code class="language-html">&lt;div class=&quot;autofit-float autofit-row portlet-header&quot;&gt;
+</code></pre>
+</li>
+</ol>
+<p>The theme templates are updated! If you modified any other FreeMarker theme
+templates, you can compare them with templates in the
+<a href="https://github.com/liferay/liferay-portal/tree/7.2.x/modules/apps/frontend-theme/frontend-theme-unstyled/src/main/resources/META-INF/resources/_unstyled/templates"><code>_unstyled</code> theme</a>. Next you can learn how
+to use Liferay DXP&rsquo;s compatibility layer to help ease the transition to Bootstrap
+4 and Clay CSS.</p>

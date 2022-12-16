@@ -1,0 +1,149 @@
+<h1 id="updating-62-web-content"><a href="#updating-62-web-content" id="updating-62-web-content">Updating 6.2 Web Content</a></h1>
+<div class="learn-path-step row">
+    <p id="stepTitle">Updating 6.2 Resources Importer</p><p>Step 2 of 3</p>
+</div>
+<p>All web content articles must be written in XML and have a structure for article
+creation and a template for rendering.</p>
+<aside>
+<p><strong>Note:</strong> The example Lunar Resort theme&rsquo;s updated XML articles are in the ZIP
+file&rsquo;s <code>/resources-importer/journal/articles/Basic Web Content/</code> folder for
+reference.</p>
+</aside>
+<p>Follow these steps to update the theme&rsquo;s web content:</p>
+<ol>
+<li>
+<p>Create a subfolder called <code>BASIC_WEB_CONTENT</code> in the
+<code>/resources-importer/journal/articles/</code> folder, and move all the basic HTML
+articles (articles that did not require a structure or template previously)
+into it.</p>
+</li>
+<li>
+<p>Create a subfolder in the <code>/resources-importer/journal/templates/</code> folder
+with the same name as the folder you just created (<code>BASIC_WEB_CONTENT</code>). The
+articles and template folder names <strong>must match</strong> for the web content to
+import properly.</p>
+</li>
+<li>
+<p>XML article structures are now written in JSON. Open the
+<code>/resources-importer/journal/structures/</code> folder and create a new file
+inside called <code>BASIC_WEB_CONTENT.json</code>. The structure name <strong>must match</strong>
+the folder names created in the previous steps. To ensure the syntax is
+correct for web content articles that used a structure and template before,
+we recommend that you recreate the structure and template in Liferay DXP.</p>
+</li>
+<li>
+<p>Add the JSON structure below to the <code>BASIC_WEB_CONTENT.json</code> file. This
+provides the required metadata to render standard web content articles
+(i.e. the language, fields, etc.):</p>
+<pre><code class="language-json">{
+    &quot;availableLanguageIds&quot;: [
+        &quot;en_US&quot;
+    ],
+    &quot;defaultLanguageId&quot;: &quot;en_US&quot;,
+    &quot;fields&quot;: [
+        {
+            &quot;label&quot;: {
+                &quot;en_US&quot;: &quot;Content&quot;
+            },
+            &quot;predefinedValue&quot;: {
+                &quot;en_US&quot;: &quot;&quot;
+            },
+            &quot;style&quot;: {
+                &quot;en_US&quot;: &quot;&quot;
+            },
+            &quot;tip&quot;: {
+                &quot;en_US&quot;: &quot;&quot;
+            },
+            &quot;dataType&quot;: &quot;html&quot;,
+            &quot;fieldNamespace&quot;: &quot;ddm&quot;,
+            &quot;indexType&quot;: &quot;keyword&quot;,
+            &quot;localizable&quot;: true,
+            &quot;name&quot;: &quot;content&quot;,
+            &quot;readOnly&quot;: false,
+            &quot;repeatable&quot;: false,
+            &quot;required&quot;: false,
+            &quot;showLabel&quot;: true,
+            &quot;type&quot;: &quot;ddm-text-html&quot;
+        }
+    ]
+}
+</code></pre>
+</li>
+<li>
+<p>Create a new FreeMarker template file for basic web content inside the
+<code>/resources-importer/journal/templates/BASIC_WEB_CONTENT</code> folder called
+<code>BASIC_WEB_CONTENT.ftl</code>, and add the method below to retrieve the article&rsquo;s
+data:</p>
+<pre><code class="language-markup">${content.getData()}
+</code></pre>
+</li>
+<li>
+<p>Convert the basic web content articles from HTML to XML to conform to the
+new format. Replace the <code>.html</code> file extensions with <code>.xml</code>. wrap each basic
+web content article&rsquo;s content with the XML shown below:</p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot;?&gt;
+
+&lt;root available-locales=&quot;en_US&quot; default-locale=&quot;en_US&quot;&gt;
+        &lt;dynamic-element name=&quot;content&quot; type=&quot;text_area&quot;
+        index-type=&quot;keyword&quot; index=&quot;0&quot;&gt;
+                &lt;dynamic-content language-id=&quot;en_US&quot;&gt;
+                        &lt;![CDATA[
+                        ORIGINAL HTML CONTENT GOES HERE
+                        ]]&gt;
+                &lt;/dynamic-content&gt;
+        &lt;/dynamic-element&gt;
+&lt;/root&gt;
+</code></pre>
+</li>
+<li>
+<p>the new DXP version&rsquo;s updated Bootstrap requires that you replace all
+<code>span[number]</code> classes with the updated <code>col-[device-size]-[number]</code> syntax.
+<code>[device-size]</code> can be <code>xs</code>, <code>sm</code>, <code>md</code>, or <code>lg</code>. See Bootstrap&rsquo;s
+<a href="https://getbootstrap.com/docs/4.0/layout/grid/">documentation</a> for more
+information. The original and updated classes for the Lunar Resort&rsquo;s
+<code>2 column description.xml</code> article are shown below:</p>
+<p>Original:</p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot;?&gt;
+
+&lt;root available-locales=&quot;en_US&quot; default-locale=&quot;en_US&quot;&gt;
+    &lt;dynamic-element name=&quot;content&quot; type=&quot;text_area&quot;
+    index-type=&quot;keyword&quot; index=&quot;0&quot;&gt;
+        &lt;dynamic-content language-id=&quot;en_US&quot;&gt;
+            &lt;![CDATA[
+                &lt;div class=&quot;container-fluid&quot;&gt;
+                    &lt;div class=&quot;span4&quot; id=&quot;columnLeft&quot;&gt;
+                        Out of This World
+                    &lt;/div&gt;
+                    &lt;div class=&quot;span8&quot; id=&quot;columnRight&quot;&gt;
+                        Come to the Lunar Resort...
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            ]]&gt;
+        &lt;/dynamic-content&gt;
+    &lt;/dynamic-element&gt;
+&lt;/root&gt;
+</code></pre>
+<p>Updated:</p>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot;?&gt;
+
+&lt;root available-locales=&quot;en_US&quot; default-locale=&quot;en_US&quot;&gt;
+    &lt;dynamic-element name=&quot;content&quot; type=&quot;text_area&quot;
+    index-type=&quot;keyword&quot; index=&quot;0&quot;&gt;
+        &lt;dynamic-content language-id=&quot;en_US&quot;&gt;
+            &lt;![CDATA[
+                &lt;div class=&quot;container-fluid&quot;&gt;
+                    &lt;div class=&quot;col-md-4&quot; id=&quot;columnLeft&quot;&gt;
+                        Out of This World
+                    &lt;/div&gt;
+                    &lt;div class=&quot;col-md-8&quot; id=&quot;columnRight&quot;&gt;
+                        Come to the Lunar Resort...
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            ]]&gt;
+        &lt;/dynamic-content&gt;
+    &lt;/dynamic-element&gt;
+&lt;/root&gt;
+</code></pre>
+</li>
+</ol>
+<p>The web content is updated! Next, you must update the theme&rsquo;s sitemap file.</p>

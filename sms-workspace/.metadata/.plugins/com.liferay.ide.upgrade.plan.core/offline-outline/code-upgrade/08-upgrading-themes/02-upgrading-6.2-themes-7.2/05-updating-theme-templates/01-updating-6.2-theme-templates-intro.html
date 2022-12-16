@@ -1,0 +1,80 @@
+<h1 id="updating-62-theme-templates"><a href="#updating-62-theme-templates" id="updating-62-theme-templates">Updating 6.2 Theme Templates</a></h1>
+<p>Liferay DXP 6.2 theme templates and the new DXP version theme templates are essentially
+the same. Here are the main changes:</p>
+<ul>
+<li>
+<p>Velocity templates were deprecated in Liferay Portal CE 7.0 and are now
+removed in favor of FreeMarker templates in Liferay DXP. Below are the key
+reasons for this move:</p>
+<ul>
+<li>
+<p>FreeMarker is developed and maintained regularly, while Velocity is no
+longer actively being developed.</p>
+</li>
+<li>
+<p>FreeMarker is faster and supports more sophisticated macros.</p>
+</li>
+<li>
+<p>FreeMarker supports using taglibs directly rather than requiring a
+method to represent them. You can pass body content to them, parameters,
+etc.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>The Dockbar has been replaced and reorganized into a set of three distinct
+menus:</p>
+<ul>
+<li>
+<p><em>The Product Menu</em>: Manage Site and page navigation, content, settings
+and pages for the current Site, and navigate to user account settings,
+etc.</p>
+</li>
+<li>
+<p><em>The Control Menu</em>: Configure and add content to the page and view the
+page in a simulation window.</p>
+</li>
+<li>
+<p><em>The User Personal Bar</em>: Display notifications and the user&rsquo;s avatar and
+name.</p>
+</li>
+</ul>
+<p><img src="../../../images/upgrading-themes-dockbar.png" alt="Figure 1: The Dockbar was removed and must be replaced with the new Control Menu." /></p>
+<p class="caption">Figure 1: The Dockbar was removed and must be replaced with the new Control Menu.</p>
+</li>
+</ul>
+<p>Start by converting your Velocity theme templates to FreeMarker. You can refer
+to Apache&rsquo;s
+<a href="https://freemarker.apache.org/docs/ref.html">FreeMarker documentation</a>
+for help. Common Liferay DXP FreeMarker variables and macros can be found in
+<a href="https://github.com/liferay/liferay-portal/blob/7.2.x/modules/apps/portal-template/portal-template-freemarker/src/main/resources/FTL_liferay.ftl"><code>FTL_liferay.ftl</code></a></p>
+<p>The <a href="running-the-upgrade-task-for-6.2-themes">Gulp <code>upgrade</code> task</a> reports the
+required theme template changes in the log. For example, here are the 6.2 to 7.0
+upgrade log and 7.0 to 7.1 upgrade logs for the Lunar Resort theme:</p>
+<pre><code class="language-bash">----------------------------------------------------------------
+ Liferay Upgrade (6.2 to 7)
+----------------------------------------------------------------
+
+File: portal_normal.ftl
+    Warning: &lt;@liferay.dockbar /&gt; is deprecated, replace with 
+    &lt;@liferay.control_menu /&gt; for new admin controls.
+    Warning: not all admin controls will be visible without 
+    &lt;@liferay.control_menu /&gt;
+    Warning: ${theme} variable is no longer available in Freemarker 
+    templates, see https://goo.gl/9fXzYt for more information.
+[18:57:23] Finished 'upgrade:log-changes' after 5.61 ms
+[18:57:23] Finished 'upgrade' after 19 s
+
+----------------------------------------------------------------
+ Liferay Upgrade (7.0 to 7.1)
+----------------------------------------------------------------
+
+Renamed aui.scss to clay.scss
+[19:16:54] Finished 'upgrade:log-changes' after 2.53 ms
+[19:16:54] Finished 'upgrade' after 16 min
+</code></pre>
+<p>The log warns about removed and deprecated code and suggests replacements when
+applicable.</p>
+<p>In this section you&rsquo;ll learn how to update various theme templates to
+the new DXP version.</p>
+<p><a class="go-link btn btn-primary" href="/docs/7-2/tutorials/-/knowledge_base/t/updating-6-2-portal-normal-theme-template">Let&rsquo;s Go<span class="icon-circle-arrow-right"></span></a></p>

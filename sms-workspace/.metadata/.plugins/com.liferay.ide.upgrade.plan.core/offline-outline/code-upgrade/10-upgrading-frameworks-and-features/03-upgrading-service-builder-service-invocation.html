@@ -1,0 +1,22 @@
+<h1 id="upgrading-service-builder-service-invocation"><a href="#upgrading-service-builder-service-invocation" id="upgrading-service-builder-service-invocation">Upgrading Service Builder Service Invocation</a></h1>
+<div class="learn-path-step row">
+    <p id="stepTitle">Upgrading Frameworks and Features</p><p>Step 2 of 4</p>
+</div>
+<p>When upgrading a portlet leveraging
+<a href="https://dev.liferay.com/docs/7-2/appdev/-/knowledge_base/a/service-builder">Service Builder</a>, you must
+first decide if you&rsquo;re building your Service Builder logic as a WAR or
+modularizing it.</p>
+<aside>
+<p><strong>Note:</strong> Service Builder portlets automatically migrated to Liferay Workspace
+using the Upgrade Planner or Blade CLI&rsquo;s <code>convert</code> command automatically
+have its Service Builder logic converted to API and implementation modules.
+This is a best practice for the new DXP version.</p>
+</aside>
+<p>If you prefer keeping your Service Builder logic as a WAR, you must implement a
+service tracker to call services. See the
+<a href="https://dev.liferay.com/docs/7-2/frameworks/-/knowledge_base/f/using-a-service-tracker">Service Trackers</a>
+article for more information.</p>
+<!--Uncomment once article is available
+If you're optimizing your Service Builder logic to invoke Liferay services from
+a module, see the Invoking Local Services article for more information.
+-->

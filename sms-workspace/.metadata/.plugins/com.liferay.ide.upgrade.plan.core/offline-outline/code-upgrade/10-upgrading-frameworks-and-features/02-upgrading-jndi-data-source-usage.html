@@ -1,0 +1,11 @@
+<h1 id="upgrading-jndi-data-source-usage"><a href="#upgrading-jndi-data-source-usage" id="upgrading-jndi-data-source-usage">Upgrading JNDI Data Source Usage</a></h1>
+<div class="learn-path-step row">
+    <p id="stepTitle">Upgrading Frameworks and Features</p><p>Step 1 of 4</p>
+</div>
+<p>In Liferay DXP&rsquo;s OSGi environment, you must use the portal&rsquo;s class loader to load
+the application server&rsquo;s JNDI classes. An OSGi bundle&rsquo;s attempt to connect to a
+JNDI data source without using Liferay DXP&rsquo;s class loader results in a
+<code>java.lang.ClassNotFoundException</code>.</p>
+<p>For more information on how to do this, see the
+<a href="https://dev.liferay.com/docs/7-2/appdev/-/knowledge_base/a/connecting-to-data-sources-using-jndi">Connecting to JNDI Data Sources</a>
+article.</p>

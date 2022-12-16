@@ -1,0 +1,50 @@
+<h1 id="upgrading-70-and-71-layout-templates-to-72"><a href="#upgrading-70-and-71-layout-templates-to-72" id="upgrading-70-and-71-layout-templates-to-72">Upgrading 7.0 and 7.1 Layout Templates to 7.2</a></h1>
+<p>If you&rsquo;re upgrading your Liferay DXP 7.0 or Liferay DXP 7.1 layout template to
+the new DXP version, follow these steps:</p>
+<ol>
+<li>
+<p>Open your layout template&rsquo;s <code>liferay-plugin-package.properties</code> file and
+update the <code>liferay-versions</code> property to <code>7.2.0+</code>:</p>
+<pre><code class="language-properties">liferay-versions=7.2.0+
+</code></pre>
+</li>
+<li>
+<p>Velocity layout templates are supported, but deprecated as of Liferay DXP 7.1.
+We recommend that you convert your Velocity layout templates to FreeMarker
+now. Wrap the
+<code>processor.processColumn(&quot;column-1&quot;, &quot;portlet-column-content portlet-column-content-first&quot;)</code>
+methods with braces (<code>{...}</code>) and change the template&rsquo;s file extension to
+<code>.ftl</code>.</p>
+</li>
+<li>
+<p>Save the changes.</p>
+<p>Below is an example configuration:</p>
+<p>Original (<code>my_layout_template.tpl</code>):</p>
+<pre><code class="language-html">&lt;div class=&quot;col-md-4 col-sm-6 portlet-column portlet-column-first&quot; 
+id=&quot;column-1&quot;&gt;
+        $processor.processColumn(&quot;column-1&quot;, 
+        &quot;portlet-column-content portlet-column-content-first&quot;)
+&lt;/div&gt;
+&lt;div class=&quot;col-md-8 col-sm-6 portlet-column portlet-column-last&quot; 
+id=&quot;column-2&quot;&gt;
+        $processor.processColumn(&quot;column-2&quot;, 
+        &quot;portlet-column-content portlet-column-content-last&quot;)
+&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>Updated (<code>my_layout_template.ftl</code>):</p>
+<pre><code class="language-html">&lt;div class=&quot;col-md-4 col-sm-6 portlet-column portlet-column-first&quot; 
+id=&quot;column-1&quot;&gt;
+        ${processor.processColumn(&quot;column-1&quot;, 
+        &quot;portlet-column-content portlet-column-content-first&quot;)}
+&lt;/div&gt;
+&lt;div class=&quot;col-md-8 col-sm-6 portlet-column portlet-column-last&quot; 
+id=&quot;column-2&quot;&gt;
+        ${processor.processColumn(&quot;column-2&quot;, 
+        &quot;portlet-column-content portlet-column-content-last&quot;)}
+&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+</li>
+</ol>
+<p>Awesome! Your layout template is upgraded.</p>

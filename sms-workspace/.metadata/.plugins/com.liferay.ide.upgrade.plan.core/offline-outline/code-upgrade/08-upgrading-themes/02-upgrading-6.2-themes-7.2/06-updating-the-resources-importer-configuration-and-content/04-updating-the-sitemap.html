@@ -1,0 +1,76 @@
+<h1 id="updating-the-62-sitemap"><a href="#updating-the-62-sitemap" id="updating-the-62-sitemap">Updating the 6.2 Sitemap</a></h1>
+<div class="learn-path-step row">
+    <p id="stepTitle">Updating 6.2 Resources Importer</p><p>Step 3 of 3</p>
+</div>
+<p>In Liferay DXP 6.2, portlet IDs were incremental numbers. In the new DXP version,
+they&rsquo;re explicit class names. Update the <code>sitemap.json</code> file with the new
+portlet IDs. Follow these steps to update the sitemap:</p>
+<ol>
+<li>
+<p>Replace the portlet IDs with the updated class names. The
+<a href="https://dev.liferay.com/docs/7-2/reference/-/knowledge_base/r/fully-qualified-portlet-ids">Portlet ID Quick Reference Guide</a>
+list the default portlet IDs. Check <code>liferay-portlet.xml</code> for the portlet ID
+number in 6.2 and replace it with the updated ID in the quick reference
+Guide.</p>
+<aside>
+<p><strong>Note:</strong> you can also retrieve a portlet&rsquo;s ID from the UI. Open the
+portlet&rsquo;s <em>Options</em> menu, select <em>Look and Feel Configuration</em>.</p>
+<p><img src="../../../images/upgrading-themes-look-and-feel-menu.png" alt="Figure 1: You can find the portlet ID in the Look and Feel Configuration menu." /></p>
+<p class="caption">Figure 1: You can find the portlet ID in the *Look and Feel Configuration* menu.</p>
+<p>Select the <em>Advanced Styling</em> tab. The <code>Portlet ID</code> value appears in the
+blue box.</p>
+<p><img src="../../../images/upgrading-themes-portlet-id.png" alt="Figure 2: The portlet ID appears within the blue box in the Advanced Styling tab." /></p>
+<p class="caption">Figure 2: The portlet ID appears within the blue box in the *Advanced Styling* tab.</p>
+</aside>
+<p>The original and updated versions of the Lunar Resort theme&rsquo;s <code>sitemap.json</code>
+are shown below:</p>
+<p>Original:</p>
+<pre><code class="language-json">{
+	&quot;name&quot;: &quot;Collaboration&quot;,
+	&quot;title&quot;: &quot;Collaboration&quot;,
+	&quot;friendlyURL&quot;: &quot;/collaboration&quot;,
+	&quot;layoutTemplateId&quot;: &quot;2_columns&quot;,
+	&quot;columns&quot;: [
+		[
+			{
+			&quot;portletId&quot;: &quot;36&quot;
+			}
+		],
+		[
+			{
+			&quot;portletId&quot;: &quot;115&quot;
+			}
+		]
+
+	]
+}
+</code></pre>
+<p>Updated:</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;Collaboration&quot;,
+  &quot;title&quot;: &quot;Collaboration&quot;,
+  &quot;friendlyURL&quot;: &quot;/collaboration&quot;,
+  &quot;layoutTemplateId&quot;: &quot;2_columns&quot;,
+  &quot;columns&quot;: [
+    [
+      {
+      &quot;portletId&quot;: &quot;com_liferay_wiki_web_portlet_WikiPortlet&quot;
+      }
+    ],
+    [
+      {
+      &quot;portletId&quot;: &quot;com_liferay_blogs_web_portlet_BlogsAgreggatorPortlet&quot;
+      }
+    ]
+
+  ]
+},
+</code></pre>
+</li>
+<li>
+<p>Update references to the web content articles in the <code>sitemap.json</code> to use
+the XML file extensions.</p>
+</li>
+</ol>
+<p>Great! The Resources Importer updates are complete. Next you&rsquo;ll apply Clay
+markup patterns to the theme&rsquo;s custom UI.</p>

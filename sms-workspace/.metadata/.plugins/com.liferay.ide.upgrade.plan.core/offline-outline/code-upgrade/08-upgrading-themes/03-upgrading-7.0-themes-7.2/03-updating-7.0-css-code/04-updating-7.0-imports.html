@@ -1,0 +1,39 @@
+<h1 id="updating-70-imports"><a href="#updating-70-imports" id="updating-70-imports">Updating 7.0 Imports</a></h1>
+<div class="learn-path-step row">
+    <p id="stepTitle">Updating 7.0 CSS Code</p><p>Step 3 of 3</p>
+</div>
+<p>Font Awesome imports and core imports have changed. Follow these steps to update
+the theme:</p>
+<ol>
+<li>
+<p>Originally in Liferay Portal CE 7.0 and Liferay DXP, Font Awesome icons were
+imported in <code>_aui_variables.scss</code> (now renamed <code>_clay_variables.scss</code>). Font
+Awesome icons are now included as a package dependency if you answer yes (y)
+to include Font Awesome during the upgrade task. If a 7.0 theme was made
+prior to this move and <code>_aui_variables.scss</code> was modified, the Font Awesome
+imports shown below must be removed from <code>_clay_variables.scss</code>:</p>
+<pre><code class="language-scss">// Icon paths
+$FontAwesomePath: &quot;aui/lexicon/fonts/alloy-font-awesome/font&quot;;
+$font-awesome-path: &quot;aui/lexicon/fonts/alloy-font-awesome/font&quot;;
+$icon-font-path: &quot;aui/lexicon/fonts/&quot;;
+</code></pre>
+</li>
+<li>
+<p>Update the old AUI lexicon paths to use the new Clay paths instead, as shown
+in the table below:</p>
+<table>
+<thead>
+<tr><th>Pattern</th><th>Replacement</th></tr>
+</thead>
+<tbody>
+<tr><td><code>@import &quot;/aui/lexicon/bootstrap/mixins/&quot;;</code></td><td>removed</td></tr>
+<tr><td><code>@import &quot;/aui/lexicon/lexicon-base/mixins/&quot;;</code></td><td>removed</td></tr>
+<tr><td><code>@import &quot;/aui/lexicon/atlas-theme/mixins/&quot;;</code></td><td>removed</td></tr>
+<tr><td><code>@import &quot;aui/lexicon/atlas-variables&quot;;</code></td><td><code>@import &quot;clay/atlas-variables&quot;;</code></td></tr>
+<tr><td><code>@import &quot;aui/lexicon/atlas&quot;;</code></td><td><code>@import &quot;clay/atlas&quot;;</code></td></tr>
+</tbody>
+</table>
+</li>
+</ol>
+<p>Great! Your imports are updated, and your CSS upgrade is complete. Next you can
+upgrade the theme templates.</p>

@@ -1,0 +1,29 @@
+<h1 id="upgrading-portlet-jsp-hooks"><a href="#upgrading-portlet-jsp-hooks" id="upgrading-portlet-jsp-hooks">Upgrading Portlet JSP Hooks</a></h1>
+<div class="learn-path-step row">
+    <p id="stepTitle">Upgrading Customization Plugins</p><p>Step 3 of 11</p>
+</div>
+<p>Getting a portlet JSP hook running on the new DXP version takes two steps:</p>
+<ol>
+<li>
+<p>Adapt your code to the new DXP version&rsquo;s API using the Liferay Upgrade Planner. When
+you ran the planner&rsquo;s <em>Fix Upgrade Problems</em> step, many of the existing
+issues were autocorrected/flagged. For any remaining errors, consult the
+<a href="../05-fixing-upgrade-problems/02-resolving-a-projects-dependencies.html">Resolving a Project&rsquo;s Dependencies</a>
+article.</p>
+</li>
+<li>
+<p>Deploy your hook plugin.</p>
+</li>
+</ol>
+<p>Liferay DXP&rsquo;s Plugin Compatibility Layer converts the plugin WAR to a Web
+Application Bundle (WAB) and installs it to Liferay&rsquo;s OSGi Runtime.</p>
+<p>Although you can upgrade your portlet JSP hook to the new DXP version, there are
+better ways to override a portlet JSP. The two recommended approaches are</p>
+<ul>
+<li>Dynamic includes</li>
+<li>Portlet filters</li>
+</ul>
+<p>For more information on recommended ways of customizing JSPs in the new DXP version,
+see the
+<a href="https://dev.liferay.com/docs/7-2/customization/-/knowledge_base/c/customizing-jsps">Customizing JSPs</a>
+section.</p>

@@ -1,0 +1,60 @@
+<h1 id="upgrading-your-development-environment"><a href="#upgrading-your-development-environment" id="upgrading-your-development-environment">Upgrading Your Development Environment</a></h1>
+<p>A <a href="https://dev.liferay.com/docs/7-2/reference/-/knowledge_base/r/liferay-workspace">Liferay Workspace</a>
+is a generated environment that is built to hold and manage your Liferay
+projects. It is intended to aid in the management of Liferay projects by
+providing various build scripts and configured properties.</p>
+<p>Liferay Workspace is the recommended environment for your code migration;
+therefore, it will be the assumed development environment in this section.</p>
+<p>Continue on to set up a workspace.</p>
+<h2 id="setting-up-liferay-workspace"><a href="#setting-up-liferay-workspace" id="setting-up-liferay-workspace">Setting Up Liferay Workspace</a></h2>
+<p>You must set up your workspace development environment before you begin
+upgrading your custom apps. If you don&rsquo;t have an existing workspace, follow the
+step for creating one. If you have an existing workspace, follow the step on
+importing it into the Upgrade Planner.</p>
+<h3 id="creating-new-liferay-workspace"><a href="#creating-new-liferay-workspace" id="creating-new-liferay-workspace">Creating New Liferay Workspace</a></h3>
+<p>Initiating this step in the Upgrade Planner loads the Liferay Workspace
+Project wizard.</p>
+<ol>
+<li>
+<p>Give your new workspace a name.</p>
+</li>
+<li>
+<p>Choose the build type (Gradle or Maven) you prefer for your workspace
+environment and future Liferay projects.</p>
+</li>
+<li>
+<p>Click Finish.</p>
+</li>
+</ol>
+<p>You now have a new Liferay Workspace available in the Upgrade Planner!</p>
+<p>For more information on creating a Liferay Workspace outside the planner, see
+the
+<a href="https://dev.liferay.com/docs/7-2/reference/-/knowledge_base/r/creating-a-liferay-workspace">Creating a Liferay Workspace</a>
+section.</p>
+<h3 id="importing-existing-liferay-workspace"><a href="#importing-existing-liferay-workspace" id="importing-existing-liferay-workspace">Importing Existing Liferay Workspace</a></h3>
+<p>If you already have an existing 7.x Liferay Workspace, you should import it
+into the planner. Once you initiate this step, you&rsquo;re given a File
+Explorer/Manager to select your existing workspace. After selecting it, the
+workspace is imported into the Project Explorer.</p>
+<p>For more information importing a workspace into your IDE, see
+<a href="https://dev.liferay.com/docs/7-2/reference/-/knowledge_base/r/importing-projects-in-dev-studio">this article</a>.</p>
+<h2 id="configuring-liferay-workspace-settings"><a href="#configuring-liferay-workspace-settings" id="configuring-liferay-workspace-settings">Configuring Liferay Workspace Settings</a></h2>
+<p>You must configure your workspace with the Liferay DXP version you intend to
+upgrade to.</p>
+<h3 id="configure-workspace-product-key"><a href="#configure-workspace-product-key" id="configure-workspace-product-key">Configure Workspace Product Key</a></h3>
+<p>Configure your workspace by setting a product key. This automatically sets the Target Platform version, Docker image name, bundle URL, and other default settings for the Liferay DXP release.</p>
+<h3 id="initializing-server-bundle"><a href="#initializing-server-bundle" id="initializing-server-bundle">Initializing Server Bundle</a></h3>
+<p>Once your workspace is configured for the Liferay DXP version you&rsquo;re upgrading to,
+you can initialize the server bundle. This involves downloading the bundle and
+extracting it into its folder (e.g., <code>bundles</code>). If you have an existing
+workspace already equipped with an older Liferay bundle, this deletes the old
+bundle and initializes the new one.</p>
+<p>If you&rsquo;re upgrading your code manually and working in Dev Studio, you can do
+this by right-clicking the workspace project and selecting <em>Liferay</em> →
+<em>Initialize Server Bundle</em>. See the
+<a href="https://dev.liferay.com/docs/7-2/reference/-/knowledge_base/r/installing-a-server-in-intellij">Installing a Server in IntelliJ</a>
+article if you use IntelliJ instead. Visit the
+<a href="https://dev.liferay.com/docs/7-2/reference/-/knowledge_base/r/managing-your-liferay-server-with-blade-cli">Managing Your Liferay Server with Blade CLI</a>
+article for information on how to do this via the command line.</p>
+<h3 id="migrate-cfg-files-to-config-files"><a href="#migrate-cfg-files-to-config-files" id="migrate-cfg-files-to-config-files">Migrate .cfg Files to .config Files</a></h3>
+<p><code>.config</code> files are preferred over <code>.cfg</code> files because they allow specifying a property value&rsquo;s type, and allow multi-valued properties.</p>

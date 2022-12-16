@@ -1,0 +1,87 @@
+<h1 id="upgrading-struts-action-hooks"><a href="#upgrading-struts-action-hooks" id="upgrading-struts-action-hooks">Upgrading Struts Action Hooks</a></h1>
+<div class="learn-path-step row">
+    <p id="stepTitle">Upgrading Customization Plugins</p><p>Step 11 of 11</p>
+</div>
+<p>In Liferay Portal 6.1 and 6.2, developers could customize the Portal and Portlet
+Struts Actions using a Hook and <code>StrutsAction</code> wrapper. For example, the
+<code>liferay-hook.xml</code> file for a hook that overrode the login portlet&rsquo;s login
+action had this entry:</p>
+<pre><code class="language-xml">&lt;struts-action&gt;
+    &lt;struts-action-path&gt;/login/login&lt;/struts-action-path&gt;
+    &lt;struts-action-impl&gt;
+        com.liferay.sample.hook.action.ExampleStrutsPortletAction
+    &lt;/struts-action-impl&gt;
+&lt;/struts-action&gt;
+</code></pre>
+<p>The <code>liferay-hook.xml</code> contains the Struts mapping and the new class that
+overrides the default login action.</p>
+<p>The wrapper could extend either <code>BaseStrutsAction</code> or <code>BaseStrutsPortletAction</code>,
+depending on whether the Struts Action was a portal or portlet action,
+respectively.</p>
+<p>Since Liferay DXP 7.0, this mechanism no longer applies for most portlets because
+they no longer use Struts Actions, but instead use Liferay <code>MVCCommand</code>s.</p>
+<p>This tutorial demonstrates how to convert your existing <code>StrutsAction</code> wrappers
+to <code>MVCCommand</code>s.</p>
+<h2 id="converting-your-old-wrapper-to-mvccommands"><a href="#converting-your-old-wrapper-to-mvccommands" id="converting-your-old-wrapper-to-mvccommands">Converting Your Old Wrapper to <code>MVCCommand</code>s</a></h2>
+<p>Converting <code>StrutsAction</code> wrappers to <code>MVCCommand</code>s is easier than you may
+think.</p>
+<p>As a review, legacy <code>StrutsAction</code> wrappers implemented all methods, such as
+<code>processAction</code>, <code>render</code>, and <code>serveResource</code>, even if only one method was
+being customized. Each of these methods can now be customized independently
+using different classes, making the logic simpler and easier to maintain.
+Depending on the method you customized in your <code>StrutsAction</code> wrapper, you need
+to use the matching
+<a href="https://docs.liferay.com/ce/portal/7.2-latest/javadocs/portal-kernel/com/liferay/portal/kernel/portlet/bridges/mvc/MVCCommand.html"><code>MVCCommand</code> interface</a>
+shown below:</p>
+<ul>
+<li><code>processAction</code> → <a href="https://docs.liferay.com/ce/portal/7.2-latest/javadocs/portal-kernel/com/liferay/portal/kernel/portlet/bridges/mvc/MVCActionCommand.html"><code>MVCActionCommand</code></a></li>
+<li><code>render</code> → <a href="https://docs.liferay.com/ce/portal/7.2-latest/javadocs/portal-kernel/com/liferay/portal/kernel/portlet/bridges/mvc/MVCRenderCommand.html"><code>MVCRenderCommand</code></a></li>
+<li><code>serveResource</code> → <a href="https://docs.liferay.com/ce/portal/7.2-latest/javadocs/portal-kernel/com/liferay/portal/kernel/portlet/bridges/mvc/MVCResourceCommand.html"><code>MVCResourceCommand</code></a></li>
+</ul>
+<p>Look at the
+<a href="https://dev.liferay.com/docs/6-2/tutorials/-/knowledge_base/t/overriding-and-adding-struts-actions"><code>ExampleStrutsPortletAction</code> class</a>
+for a <code>StrutsAction</code> wrapper example. Depending on the actions overridden, the
+user must use different <code>MVCCommand</code>s. In this example, the action and render
+were overridden, so to migrate to the new pattern, you would create two classes:
+an <code>MVCActionCommand</code> and <code>MVCRenderCommand</code>.</p>
+<p>Next you&rsquo;ll determine the mapping the <code>MVCCommand</code> uses.</p>
+<h2 id="mapping-your-mvccommand-urls"><a href="#mapping-your-mvccommand-urls" id="mapping-your-mvccommand-urls">Mapping Your <code>MVCCommand</code> URLs</a></h2>
+<p>For most cases, the <code>MVCCommand</code> mapping is the same mapping defined in the
+legacy Struts Action.</p>
+<p>Using the beginning login example once again, the <code>struts-action-path</code> mapping,
+<code>/login/login</code>, remains the same for the <code>MVCCommand</code> mapping in the new DXP version,
+but some of the mappings may have changed. It&rsquo;s best to check Liferay DXP&rsquo;s source
+code to determine the correct mapping.</p>
+<p>Map to your <code>MVCCommand</code> URLs using portlet URL tags:</p>
+<ul>
+<li>
+<p><code>MVCRenderCommand</code> URLs go in <code>mvcRenderCommandName</code> parameters. For
+example,</p>
+<pre><code class="language-xml">&lt;portlet:renderURL var=&quot;editEntryURL&quot;&gt;
+    &lt;portlet:param name=&quot;mvcRenderCommandName&quot; value=&quot;/hello/edit_entry&quot; /&gt;
+    &lt;portlet:param name=&quot;entryId&quot; value=&quot;&lt;%= String.valueOf(entry.getEntryId()) %&gt;&quot; /&gt;
+&lt;/portlet:renderURL&gt;
+</code></pre>
+</li>
+<li>
+<p><code>MVCActionCommand</code> URLs go in <code>actionURL</code> tag <code>name</code> attributes or in a
+parameter <code>ActionRequest.ACTION_NAME</code>. For example,</p>
+<pre><code class="language-xml">&lt;portlet:actionURL name=&quot;/blogs/edit_entry&quot; var=&quot;editEntryURL&quot; /&gt;
+</code></pre>
+</li>
+<li>
+<p><code>MVCResourceCommand</code> URLs go in <code>resourceURL</code> tag <code>id</code> attributes. For
+example,</p>
+<pre><code class="language-xml">&lt;portlet:resourceURL id=&quot;/login/captcha&quot; var=&quot;captchaURL&quot; /&gt;
+</code></pre>
+</li>
+</ul>
+<p>Once you have this information, you can override the <code>MVCCommand</code> by following
+the instructions found in these <code>MVCCommand</code> articles:</p>
+<ul>
+<li><a href="https://dev.liferay.com/docs/7-2/customization/-/knowledge_base/c/adding-logic-to-mvc-commands">Adding Logic to MVCCommands</a></li>
+<li><a href="https://dev.liferay.com/docs/7-2/customization/-/knowledge_base/c/overriding-mvcrendercommand">Overriding MVCRenderCommands</a></li>
+<li><a href="https://dev.liferay.com/docs/7-2/customization/-/knowledge_base/c/overriding-mvcactioncommand">Overriding MVCActionCommands</a></li>
+<li><a href="https://dev.liferay.com/docs/7-2/customization/-/knowledge_base/c/overriding-mvcresourcecommand">Overriding MVCResourceCommands</a></li>
+</ul>
+<p>Now you know how to convert your <code>StrutsActionWrapper</code>s to <code>MVCCommand</code>s!</p>

@@ -1,0 +1,97 @@
+<h1 id="upgrading-a-struts-1-portlet"><a href="#upgrading-a-struts-1-portlet" id="upgrading-a-struts-1-portlet">Upgrading a Struts 1 Portlet</a></h1>
+<div class="learn-path-step row">
+    <p id="stepTitle">Upgrading Portlets</p><p>Step 6 of 6</p>
+</div>
+<p>Struts is a stable, widely adopted framework that implements the Model View
+Controller (MVC) design pattern. If you have a Struts portlet for previous
+versions of Liferay Portal, you can upgrade it to the new DXP version.</p>
+<p>Upgrading Struts portlets to the new DXP version is easier than you might think.
+Liferay DXP lets you continue working with Struts portlets as Java EE web
+applications.</p>
+<p>This tutorial demonstrates how to upgrade a portlet that uses the Struts 1
+Framework.</p>
+<p>Here&rsquo;s a sample Struts portlet&rsquo;s folder structure with file/folder descriptions:</p>
+<ul>
+<li><code>sample-struts-portlet</code>
+<ul>
+<li><code>docroot/</code>
+<ul>
+<li><code>html/portlet/sample_struts_portlet/</code> → JSPs</li>
+<li><code>WEB-INF/</code>
+<ul>
+<li><code>lib/</code> → Required third-party libraries unavailable in the Liferay DXP system</li>
+<li><code>src/</code>
+<ul>
+<li><code>com/liferay/samplestruts/model/</code> → Model classes</li>
+<li><code>com/liferay/samplestruts/servlet/</code> → Test servlet and servlet context listener</li>
+<li><code>com/liferay/samplestruts/struts/</code>
+<ul>
+<li><code>action/</code> → <code>Action</code> classes that return View pages to the client</li>
+<li><code>form/</code> → <code>ActionForm</code> classes for model interaction</li>
+<li><code>render/</code> → <code>Action</code> classes that present additional pages and handle input</li>
+<li><code>SampleException.java</code> → Exception class</li>
+</ul>
+</li>
+<li><code>content/test/</code> → Resource bundles</li>
+<li><code>META-INF/</code> → Javadoc</li>
+</ul>
+</li>
+<li><code>tld/</code> → Tag library definitions</li>
+<li><code>liferay-display.xml</code> → Sets the application category</li>
+<li><code>liferay-plugin-package.properties</code> → Sets metadata and portal dependencies</li>
+<li><code>liferay-portlet.xml</code> → Maps descriptive role names to roles</li>
+<li><code>liferay-releng.properties</code> → (internal) Release properties</li>
+<li><code>portlet.xml</code> → Defines the portlet and its initialization parameters and security roles</li>
+<li><code>struts-config.xml</code> → Struts configuration</li>
+<li><code>tiles-defs.xml</code> → Struts Tile definitions</li>
+<li><code>validation.xml</code> → Defines form inputs for validation</li>
+<li><code>validation-rules.xml</code> → Struts validation rules</li>
+<li><code>web.xml</code> → Web application descriptor</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>build.xml</code> → Apache Ant build file</li>
+</ul>
+</li>
+</ul>
+<p>Upgrading a Struts 1 portlet involves these steps:</p>
+<ol>
+<li>
+<p>Adapt the portlet to the new DXP version&rsquo;s API using the Liferay Upgrade Planner.
+When running the planner&rsquo;s <em>Fix Upgrade Problems</em> step, many of the existing
+issues are autocorrected. For remaining issues, the planner identifies code
+affected by the new API and ways to adapt it.</p>
+</li>
+<li>
+<p><a href="../05-fixing-upgrade-problems/02-resolving-a-projects-dependencies.html">Resolve its dependencies</a></p>
+</li>
+</ol>
+<p>You&rsquo;ve resolved the Sample Struts portlet&rsquo;s dependencies. It&rsquo;s ready to deploy.</p>
+<aside>
+<p><strong>Important</strong>: Setting Portal property <code>jsp.page.context.force.get.attribute</code>
+(described in the
+<a href="https://docs.liferay.com/ce/portal/7.2-latest/propertiesdoc/portal.properties.html#JSP">JSP section</a>)
+to <code>true</code> (default) forces calls to
+<code>com.liferay.taglib.servlet.PageContextWrapper#findAttribute(String)</code> to use
+<code>getAttribute(String)</code>. Although this improves performance by avoiding
+unnecessary fall-backs, it can cause attribute lookup problems in Struts
+portlets. To use Struts portlets in your sites, makes sure to set the Portal
+property <code>jsp.page.context.force.get.attribute</code> to <code>false</code> in a file
+<code>[Liferay-Home]/portal-ext.properties</code>.</p>
+<pre><code class="language-properties">jsp.page.context.force.get.attribute=false
+</code></pre>
+</aside>
+<p>On <a href="https://dev.liferay.com/docs/7-2/reference/-/knowledge_base/r/deploying-a-project">deploying</a> a
+Struts portlet Web Application aRchive (WAR), Liferay DXP&rsquo;s Web Application Bundle
+(WAB) Generator creates an OSGi module (bundle) for the portlet and installs it
+to Liferay&rsquo;s OSGi framework. The server prints messages indicating the following
+portlet status:</p>
+<ul>
+<li>WAR processing</li>
+<li>WAB startup</li>
+<li>Availability to users</li>
+</ul>
+<p>The Struts portlet is now available on your Liferay DXP instance. The Struts
+portlet behaves just as it did on previous versions on your the new DXP version site.</p>
+<p>Congratulations on upgrading your Struts portlet to the new DXP version!</p>

@@ -1,0 +1,48 @@
+<h1 id="upgrading-a-servlet-based-portlet"><a href="#upgrading-a-servlet-based-portlet" id="upgrading-a-servlet-based-portlet">Upgrading a Servlet-based Portlet</a></h1>
+<div class="learn-path-step row">
+    <p id="stepTitle">Upgrading Portlets</p><p>Step 4 of 6</p>
+</div>
+<p>This tutorial shows you how to upgrade servlet-based portlets. It refers to
+code from before and after upgrading a sample servlet-based portlet called
+<em>Sample JSON</em> (project <code>sample-json-portlet</code>). The portlet shows a <em>Click me</em>
+link. When users click the link, the Liferay logo appears.</p>
+<p>Follow these steps to upgrade a servlet-based portlet:</p>
+<ol>
+<li>
+<p>Adapt the portlet to the new DXP version&rsquo;s API using the Liferay Upgrade Planner.
+When running the planner&rsquo;s <em>Fix Upgrade Problems</em> step, many of the existing
+issues are autocorrected. For remaining issues, the planner identifies code
+affected by the new API and ways to adapt it.</p>
+</li>
+<li>
+<p><a href="../05-fixing-upgrade-problems/02-resolving-a-projects-dependencies.html">Resolve its dependencies</a></p>
+</li>
+<li>
+<p><a href="https://dev.liferay.com/docs/7-2/reference/-/knowledge_base/r/deploying-a-project">Deploy it</a></p>
+</li>
+</ol>
+<p>For an example upgrade scenario, consider this:</p>
+<p>Some servlet-based portlets relied on Liferay Portal to provide several
+dependency JAR files. Here&rsquo;s the <code>portal-dependency-jars</code> property from a sample
+portlet&rsquo;s <code>liferay-plugin-package.properties</code> file:</p>
+<pre><code class="language-properties">portal-dependency-jars=\
+    dom4j.jar,\
+    jabsorb.jar,\
+    json-java.jar
+</code></pre>
+<p>This property is deprecated in the new DXP version because importing and exporting
+Java packages has replaced wholesale use of JARs. This means modules and WABs
+can import packages without concerning themselves with JARs. Liferay DXP exports
+many third party packages for plugins to use. Best practices for using packages
+that Liferay DXP exports are found
+<a href="https://dev.liferay.com/docs/7-2/customization/-/knowledge_base/c/configuring-dependencies">here</a>.</p>
+<p>Once you&rsquo;ve deployed your portlet, the server prints messages that indicate the
+following portlet status:</p>
+<ul>
+<li>WAR processing</li>
+<li>WAB startup</li>
+<li>Availability to users</li>
+</ul>
+<p>The portlet is installed to Liferay&rsquo;s OSGi runtime and is available to users.</p>
+<p>Congratulations! You&rsquo;ve upgraded and deployed your servlet-based portlet to
+the new DXP version.</p>

@@ -1,0 +1,6 @@
+Bundle-Name: lms-constants
+Bundle-SymbolicName: com.armantec.lms.constants
+Bundle-Version: 1.0.0
+Export-Package: \
+	com.armantec.lms.constants,\
+	com.armantec.common.models
